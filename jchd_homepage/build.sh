@@ -10,5 +10,5 @@ pip install -r requirements.txt
 # cd ..
 
 # Django collect static
-python manage.py collectstatic --noinput
-python manage.py migrate
+python manage.py collectstatic --noinput --clear
+python manage.py migrate --noinput

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}
+    {{ news_detail.title }}
+{% endblock title %}
+{% block hero %}
+{% endblock hero %}
+{% block sub_banner %}
+    {% include "partials/_sub_header.html" with banner_title=menu_items.news.name banner_image=menu_items.news.image breadcrumbs=custom_breadcrumbs %}
+{% endblock sub_banner %}
+{% block content %}
+    <section class="py-12 md:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <article class="border-b border-gray-100 pb-16">
+                <header class="mb-10">
+                    <div class="flex items-center mb-6">
+                        <time class="text-gray-500 font-medium tracking-wider">{{ news_detail.date|date:"Y.m.d" }}</time>
+                    </div>
+                    <h1 class="text-2xl md:text-4xl font-bold text-gray-900 leading-tight md:leading-snug">{{ news_detail.title }}</h1>
+                </header>
+                <div class="prose prose-slate max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-loose prose-img:rounded-lg prose-a:text-primary">
+                    {{ news_detail.content|safe }}
+                </div>
+            </article>
+            <nav class="mt-16">
+                <div class="flex flex-row border-t border-b border-gray-200">
+                    <div class="flex-1 border-b md:border-b-0 md:border-r border-gray-200">
+                        {% if previous_news %}
+                            <a href="{% url 'news_detail' slug=previous_news.slug %}"
+                               class="group flex flex-col p-6 transition-all">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-2">{% trans "前のページへ" %}</span>
+                                <span class="text-sm text-gray-800 font-medium line-clamp-1 group-hover:text-primary transition-colors">
+                                    {{ previous_news.title }}
+                                </span>
+                            </a>
+                        {% else %}
+                            <div class="p-6 opacity-30 cursor-not-allowed">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em]">{% trans "前のニュースはありません" %}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="flex-none flex items-center justify-center p-6 border-b md:border-b-0 md:border-r border-gray-200 bg-gray-50 md:bg-transparent">
+                        <a href="{% url 'news_list' %}"
+                           class="text-gray-500 text-2xl hover:text-primary transform hover:scale-110 transition-all duration-300"
+                           title="一覧へ戻る">
+                            <i class="fa-solid fa-bars"></i>
+                        </a>
+                    </div>
+                    <div class="flex-1 text-right">
+                        {% if next_news %}
+                            <a href="{% url 'news_detail' slug=next_news.slug %}"
+                               class="group flex flex-col p-6 transition-all">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-2">{% trans "次のページへ" %}</span>
+                                <span class="text-sm text-gray-800 font-medium line-clamp-1 group-hover:text-primary transition-colors">
+                                    {{ next_news.title }}
+                                </span>
+                            </a>
+                        {% else %}
+                            <div class="p-6 opacity-30 cursor-not-allowed">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em]">{% trans "次のニュースはありません" %}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,276 @@
+{% load tailwind_tags %}
+{% load solo_tags %}
+{% load static %}
+{% load i18n %}
+{% get_solo 'core.SiteConfiguration' as config %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                {{ config.company_name }}
+            {% endblock title %}
+        </title>
+        <!-- Favicon -->
+        <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+        <link rel="apple-touch-icon"
+              href="{% static 'img/apple-touch-icon.png' %}"
+              sizes="180x180">
+        <!-- Tailwind CSS -->
+        {% tailwind_css %}
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!-- Google Fonts: Noto Sans JP -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+              rel="stylesheet">
+        {% block extra_head %}
+            <!-- Extra Head -->
+        {% endblock extra_head %}
+    </head>
+    <body class="bg-white text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+        <!-- NAVBAR -->
+        <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-5 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- LOGO -->
+                    {% if config.logo_image %}
+                        <a href={% url "home" %} class="flex items-center">
+                            <img src="{{ config.logo_image.url }}"
+                                 alt="Logo"
+                                 class="h-11 w-auto object-contain">
+                        </a>
+                    {% else %}
+                        <span class="px-6 py-3 text-gray-500">{% trans "ロゴなし" %}</span>
+                    {% endif %}
+                    <!-- DESKTOP MENU -->
+                    <div class="hidden md:flex items-center space-x-10 font-medium text-lg">
+                        {% for item in sorted_menu_items %}
+                            {% if item.key == "home" %}
+                                <a href="{{ menu_items.home.url_prefix }}"
+                                   class="hover:text-primary transition-colors duration-300">{{ menu_items.home.name }}</a>
+                            {% elif item.key == "about" %}
+                                <!-- DROPDOWN 会社概要 -->
+                                <div class="relative group">
+                                    <a href="{{ menu_items.about.url_prefix }}"
+                                       class="flex items-center hover:text-primary transition-colors duration-300">
+                                        {{ menu_items.about.name }}
+                                        <i class="fa-solid fa-chevron-down ml-2 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                                    </a>
+                                    <div class="absolute left-0 top-full mt-4 w-64 bg-white shadow-xl rounded-xl py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100 origin-top">
+                                        {% for page in pages %}
+                                            <a href="{% url 'page_detail' slug=page.slug %}"
+                                               class="block px-6 py-3 hover:bg-primarylight hover:text-primary transition-colors duration-200">
+                                                {{ page.title }}
+                                            </a>
+                                        {% empty %}
+                                            <span class="block px-6 py-3 cursor-not-allowed text-gray-500">{% trans "サブページなし" %}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% elif item.key == "news" %}
+                                {% if LANGUAGE_CODE == "ja" %}
+                                    <a href="{{ menu_items.news.url_prefix }}"
+                                       class="hover:text-primary transition-colors duration-300">{{ menu_items.news.name }}</a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ item.url_prefix }}"
+                                   class="hover:text-primary transition-colors duration-300">{{ item.name }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <!-- RIGHT SIDE -->
+                    <div class="flex items-center space-x-4">
+                        <!-- LANGUAGE -->
+                        <div class="flex items-center space-x-2 text-sm font-semibold">
+                            <form action="{% url 'set_language' %}"
+                                  method="post"
+                                  class="flex items-center space-x-2">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{% url "home" %}">
+                                <button type="submit"
+                                        name="language"
+                                        value="ja"
+                                        class="px-1 py-1 border-b-2 hover:text-primary transition-all duration-300 transform hover:-translate-y-1 {% if LANGUAGE_CODE == 'ja' %}border-gray-700{% else %}border-transparent{% endif %}">
+                                    JA
+                                </button>
+                                <span>|</span>
+                                <button type="submit"
+                                        name="language"
+                                        value="en"
+                                        class="px-1 py-1 border-b-2 hover:text-primary transition-all duration-300 transform hover:-translate-y-1 {% if LANGUAGE_CODE == 'en' %}border-gray-700{% else %}border-transparent{% endif %}">
+                                    EN
+                                </button>
+                            </form>
+                        </div>
+                        <!-- MOBILE BUTTON -->
+                        <button id="mobile-btn"
+                                class="md:hidden text-2xl p-2 rounded-lg hover:text-primary transition-colors">
+                            <i id="mobile-icon" class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- MOBILE MENU -->
+            <div id="mobile-menu"
+                 class="fixed inset-0 bg-black/60 backdrop-blur-sm invisible opacity-0 transition-opacity duration-400 md:hidden z-50">
+                <div id="mobile-panel"
+                     class="absolute right-0 top-0 bottom-0 w-4/5 max-w-sm bg-white shadow-2xl translate-x-full transition-transform duration-500 ease-in-out">
+                    <div class="flex flex-col h-full">
+                        <div class="flex justify-between items-center p-6 border-b">
+                            <div class="text-2xl font-bold text-primary">{% trans "メニュー" %}</div>
+                            <button id="mobile-close"
+                                    class="text-3xl text-gray-600 hover:text-primary transition-colors">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center justify-center space-y-10 text-2xl font-medium">
+                            {% for item in sorted_menu_items %}
+                                {% if item.key == "news" %}
+                                    {% if LANGUAGE_CODE == 'ja' %}
+                                        <a href="{{ menu_items.news.url_prefix }}"
+                                           class="hover:text-primary transition-colors duration-300">{{ menu_items.news.name }}</a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{{ item.url_prefix }}"
+                                       class="hover:text-primary transition-colors duration-300">{{ item.name }}</a>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="space-x-4 pt-10 flex items-center">
+                                <form action="{% url 'set_language' %}" method="post" class="inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{% url "home" %}">
+                                    <button type="submit"
+                                            name="language"
+                                            value="ja"
+                                            class="px-1 hover:text-primary transition-colors duration-300{% if LANGUAGE_CODE == 'ja' %}text-primary{% endif %}">
+                                        JA
+                                    </button>
+                                    <span>|</span>
+                                    <button type="submit"
+                                            name="language"
+                                            value="en"
+                                            class="px-1 hover:text-primary transition-colors duration-300{% if LANGUAGE_CODE == 'en' %}text-primary{% endif %}">
+                                        EN
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- SPACER -->
+        <div class="h-20"></div>
+        <!-- HERO -->
+        {% block hero %}
+            <section class="relative h-[80vh] min-h-[620px] bg-cover bg-center bg-no-repeat"
+                     style="background-image: url('{% static 'img/bg_hero.png' %}')">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/50"></div>
+                <div class="relative z-10 flex items-center justify-center h-full text-center text-white px-6">
+                    <div class="max-w-4xl animate-fadeInUp">
+                        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight drop-shadow-lg">
+                            {{ config.banner_slogan|safe|linebreaksbr }}
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto drop-shadow-md">
+                            {{ config.banner_description|safe|linebreaksbr }}
+                        </p>
+                        <a href="#"
+                           class="inline-block bg-primary hover:bg-primarydark text-white font-bold mt-3 py-4 px-10 rounded-full text-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                            {% trans "事業内容を見る" %}
+                        </a>
+                    </div>
+                </div>
+            </section>
+        {% endblock hero %}
+        <!-- MAIN CONTENT -->
+        <main class="flex-grow">
+            {% block sub_banner %}<!-- Sub Banner -->{% endblock %}
+            <div class="container-content">
+                {% block content %}<!-- Pages Content -->{% endblock %}
+            </div>
+        </main>
+        <!-- FOOTER -->
+        {% block footer %}
+            <footer class="bg-gradient-to-b from-primarydark to-primary text-white py-16 mt-auto">
+                <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                        <!-- COMPANY INFO -->
+                        <div class="md:col-span-5">
+                            <h3 class="text-2xl font-bold mb-6">{{ config.company_name }}</h3>
+                            <p class="leading-relaxed opacity-90">
+                                〒{{ config.company_postal_code }}
+                                <br>
+                                {% trans "住所" %}: {{ config.company_address }}
+                                <br>
+                                TEL: {{ config.company_phone }}
+                                <br>
+                                Email: {{ config.company_email }}
+                            </p>
+                        </div>
+                        <!-- QUICK LINKS -->
+                        <div class="md:col-span-3">
+                            <h4 class="text-xl font-semibold mb-6">{% trans "クイックリンク" %}</h4>
+                            <ul class="space-y-3 text-lg opacity-90">
+                                {% for item in sorted_menu_items %}
+                                    <li>
+                                        {% if item.key == "news" %}
+                                            {% if LANGUAGE_CODE == 'ja' %}
+                                                <a href="{{ menu_items.news.url_prefix }}"
+                                                   class="hover:text-primary transition-colors duration-300">{{ menu_items.news.name }}</a>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="{{ item.url_prefix }}"
+                                               class="hover:text-accent transition-colors duration-200">{{ item.name }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- GOOGLE MAPS -->
+                        <div class="md:col-span-4">
+                            <h4 class="text-xl font-semibold mb-6">{% trans "アクセス" %}</h4>
+                            <div class="rounded-xl overflow-hidden shadow-2xl">{{ config.map_embed|safe }}</div>
+                        </div>
+                    </div>
+                    <div class="mt-16 pt-8 border-t border-white/20 text-center text-sm opacity-80">
+                        © {% now "Y" %} {{ config.company_name }} All Rights Reserved.
+                    </div>
+                </div>
+            </footer>
+        {% endblock footer %}
+        <!-- JAVASCRIPT -->
+        <script>
+            /* MOBILE MENU */
+            const mobileBtn   = document.getElementById('mobile-btn');
+            const mobileClose = document.getElementById('mobile-close');
+            const mobileMenu  = document.getElementById('mobile-menu');
+            const mobilePanel = document.getElementById('mobile-panel');
+
+            mobileBtn?.addEventListener('click', () => {
+                mobileMenu.classList.remove('invisible', 'opacity-0');
+                mobilePanel.classList.remove('translate-x-full');
+            });
+
+            mobileClose?.addEventListener('click', () => {
+                mobilePanel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('opacity-0', 'invisible');
+                }, 500);
+            });
+
+            /* Close mobile menu when clicking outside panel */
+            mobileMenu?.addEventListener('click', e => {
+                if (e.target === mobileMenu) {
+                    mobilePanel.classList.add('translate-x-full');
+                    setTimeout(() => mobileMenu.classList.add('opacity-0', 'invisible'), 500);
+                }
+            });
+        </script>
+        {% block extra_js %}
+        {% endblock extra_js %}
+    </body>
+</html>

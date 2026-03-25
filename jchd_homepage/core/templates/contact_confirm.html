@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center mb-8">{% trans "入力内容の確認" %}</h1>
+            <div class="bg-white shadow-sm border border-gray-200 rounded-xl overflow-hidden">
+                <div class="p-8 space-y-6">
+                    <p class="text-gray-600 text-center mb-6">{% trans "以下の内容でよろしければ「送信する」ボタンを押してください。" %}</p>
+                    <dl class="divide-y divide-gray-200">
+                        {% for field in form %}
+                            {% if field.name != 'agree' and field.name != 'email_confirm' %}
+                                <div class="py-4 grid grid-cols-3 gap-4">
+                                    <dt class="font-bold text-gray-700">{{ field.label }}</dt>
+                                    <dd class="col-span-2 text-gray-900">
+                                        {% if field.field.choices %}
+                                            {{ field.value|default:"-" }}
+                                        {% else %}
+                                            {{ field.value|linebreaksbr|default:"-" }}
+                                        {% endif %}
+                                    </dd>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </dl>
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="{% url 'contact' %}"
+                           class="px-8 py-3 border border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-100 text-center transition">
+                            {% trans "修正する" %}
+                        </a>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    class="w-full px-12 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg transition">
+                                {% trans "送信する" %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

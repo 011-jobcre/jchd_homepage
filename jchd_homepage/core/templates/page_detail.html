@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}
+    {{ page.title }} | {{ config.company_name }}
+{% endblock title %}
+{% block hero %}
+{% endblock hero %}
+{% block sub_banner %}
+    {% include "partials/_sub_header.html" with banner_title=page.title banner_image=page.image breadcrumbs=custom_breadcrumbs %}
+{% endblock sub_banner %}
+{% block content %}
+    <!-- Main Content -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <div class="space-y-6 text-gray-700">
+            {% if page.page_type == 'company_profile' %}
+                <!-- Company Profiles -->
+                <div class="max-w-3xl mx-auto">
+                    {% if profile_entries %}
+                        <dl class="divide-y divide-gray-500 border-b border-gray-500">
+                            {% for entry in profile_entries %}
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-6">
+                                    <dt class="w-40 text-gray-500 font-semibold tracking-wide">{{ entry.title }}</dt>
+                                    <dd class="md:col-span-2 text-gray-800 leading-relaxed">
+                                        {{ entry.content|linebreaksbr|safe }}
+                                    </dd>
+                                </div>
+                            {% endfor %}
+                        </dl>
+                    {% else %}
+                        <div class="text-center py-24 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                            <p class="text-gray-500 font-medium">{% trans "現在、会社概要が登録されていません。" %}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            {% elif page.page_type == 'history' %}
+                <!-- History Events -->
+                <div class="max-w-3xl mx-auto py-6 px-4">
+                    <div class="relative">
+                        {% for event in history_events %}
+                            <div class="flex mb-0 group">
+                                <div class="w-24 py-3 flex-shrink-0 text-3xl text-center font-light tracking-tighter text-primary">
+                                    {% ifchanged event.year %}
+                                        {{ event.year }}
+                                    {% endifchanged %}
+                                </div>
+                                <div class="relative flex flex-col items-center px-4">
+                                    <div class="absolute h-full w-px bg-primary top-0 left-1/2 -translate-x-1/2"></div>
+                                    <div class="relative z-10 text-primary fa-solid fa-circle mt-6"></div>
+                                </div>
+                                <div class="flex-grow py-3 border-b border-gray-300">
+                                    <div class="grid grid-cols-[60px_1fr] gap-x-6">
+                                        <span class="text-primary font-semibold pt-1 text-lg text-right">
+                                            {% if event.month %}{{ event.get_month_display }}{% endif %}
+                                        </span>
+                                        <span class="text-gray-600 leading-relaxed pt-1 text-sm sm:text-base">{{ event.event|linebreaksbr|safe }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="text-center py-24 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                                <p class="text-gray-500 font-medium">{% trans "現在、沿革が登録されていません。" %}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% elif page.page_type == 'greeting' %}
+                <!-- Greetings -->
+                <section class="max-w-5xl mx-auto px-4 py-16">
+                    <!-- CEO block -->
+                    <div class="grid md:grid-cols-[320px_1fr] gap-10 items-start">
+                        <!-- CEO Image -->
+                        <div class="overflow-hidden rounded-xl shadow-lg">
+                            {% if page.greetings.ceo_image %}
+                                <img src="{{ page.greetings.ceo_image.url }}"
+                                     alt="代表取締役社長 {{ page.greetings.ceo_name }}"
+                                     class="w-full h-[380px] object-cover">
+                            {% else %}
+                                <div class="w-full h-[380px] bg-gray-200 flex items-center justify-center text-gray-500">CEO Photo</div>
+                            {% endif %}
+                        </div>
+                        <!-- Message -->
+                        <div>
+                            <!-- Company Name -->
+                            <div class="mb-6">
+                                <p class="text-sm text-gray-500">{{ config.company_name }}</p>
+                                <p class="text-xl font-semibold text-gray-800">
+                                    {% trans "代表取締役社長" %}　
+                                    <span class="text-2xl">{{ page.greetings.ceo_name }}</span>
+                                </p>
+                            </div>
+                            <!-- Greeting Message -->
+                            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">{{ page.greetings.message|safe }}</div>
+                        </div>
+                    </div>
+                </section>
+            {% elif page.page_type == 'global_network' %}
+                <!-- Global Network -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for loc in global_networks %}
+                        <div class="bg-white border-t-8 border-primary flex flex-col h-full border-x border-b">
+                            <div class="p-5 border-b border-gray-100">
+                                <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                                    <span class="w-1.5 h-6 bg-primary mr-3 italic"></span>{{ loc.name }}
+                                </h3>
+                            </div>
+                            <div class="p-6 flex-grow space-y-4">
+                                <div class="flex items-start">
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded mr-3 mt-1 font-bold w-auto text-center">{% trans "住所" %}</span>
+                                    <div class="text-gray-700 leading-relaxed">
+                                        {% if loc.postal_code %}<p class="font-medium">〒{{ loc.postal_code }}</p>{% endif %}
+                                        <p class="whitespace-pre-line">{{ loc.address|linebreaksbr|safe }}</p>
+                                    </div>
+                                </div>
+                                {% if loc.phone %}
+                                    <div class="flex items-center">
+                                        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded mr-3 font-bold w-auto text-center">TEL</span>
+                                        <p class="text-gray-800 font-semibold tracking-wider">{{ loc.phone }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% if loc.map_url %}
+                                <div class="px-6 pb-6">
+                                    <a href="{{ loc.map_url }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="inline-block bg-primary text-white font-bold text-center w-full py-2 px-4 rounded hover:bg-primarydark transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-1">
+                                        MAP <i class="fa-solid fa-circle-chevron-right"></i>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="px-6 pb-6">
+                                    <a href="https://www.google.com/maps/search/?api=1&query={{ loc.address|urlencode }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="inline-block bg-primary text-white font-bold text-center w-full py-2 px-4 rounded hover:bg-primarydark transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-1">
+                                        MAP <i class="fa-solid fa-circle-chevron-right"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% empty %}
+                        <div class="text-center py-24 bg-gray-50 rounded-lg col-span-full border border-dashed border-gray-300">
+                            <p class="text-gray-500 font-medium">{% trans "現在、拠点情報が登録されていません。" %}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <!-- Default for more -->
+                <div class="prose prose-lg max-w-none mx-auto text-gray-700">{{ page.content|safe }}</div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}

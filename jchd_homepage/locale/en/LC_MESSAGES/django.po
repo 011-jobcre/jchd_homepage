@@ -1,0 +1,594 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-25 05:47+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: core/forms.py:13
+msgid "送信するにはプライバシーポリシーへの同意が必要です。"
+msgstr ""
+
+#: core/forms.py:18
+msgid "メールアドレス(確認)"
+msgstr "Email Address (Confirm)"
+
+#: core/forms.py:22
+msgid "確認のため、もう一度入力してください"
+msgstr "Please enter this again to confirm"
+
+#: core/forms.py:33
+msgid "姓"
+msgstr "Last Name"
+
+#: core/forms.py:34
+msgid "名"
+msgstr "First Name"
+
+#: core/forms.py:35
+msgid "セイ"
+msgstr "Last Name (Kana)"
+
+#: core/forms.py:36
+msgid "メイ"
+msgstr "First Name (Kana)"
+
+#: core/forms.py:38
+msgid "例: example@domain.com"
+msgstr "Example: example@domain.com"
+
+#: core/forms.py:41
+#, fuzzy
+#| msgid "半角（例: 03-1111-1111）"
+msgid "例: 03-1111-1111"
+msgstr "Half-width (e.g., 03-1111-1111)"
+
+#: core/forms.py:90
+msgid "メールアドレスが一致しません。もう一度入力してください。"
+msgstr "The email address does not match. Please enter it again."
+
+#: core/forms.py:107
+msgid ""
+"フリーメールアドレスはご利用いただけません。会社・学校のメールアドレスをご利"
+"用ください。"
+msgstr ""
+
+#: core/forms.py:116
+#, fuzzy
+#| msgid "採用に関するお問い合わせの場合、入力必須となります。"
+msgid "採用に関するお問い合わせの場合、年齢の入力は必須です。"
+msgstr "This field is required for inquiries regarding recruitment."
+
+#: core/forms.py:126
+#, fuzzy
+#| msgid "学生の方は学部・学科まで入力してください。"
+msgid "有効な電話番号を入力してください。"
+msgstr "For a student, please enter your college and department."
+
+#: core/forms.py:132 core/forms.py:138
+#, fuzzy
+#| msgid "学生の方は学部・学科まで入力してください。"
+msgid "全角カタカナで入力してください。"
+msgstr "For a student, please enter your college and department."
+
+#: core/models.py:114
+msgid "1月"
+msgstr "January"
+
+#: core/models.py:115
+msgid "2月"
+msgstr "February"
+
+#: core/models.py:116
+msgid "3月"
+msgstr "March"
+
+#: core/models.py:117
+msgid "4月"
+msgstr "April"
+
+#: core/models.py:118
+msgid "5月"
+msgstr "May"
+
+#: core/models.py:119
+msgid "6月"
+msgstr "June"
+
+#: core/models.py:120
+msgid "7月"
+msgstr "July"
+
+#: core/models.py:121
+msgid "8月"
+msgstr "August"
+
+#: core/models.py:122
+msgid "9月"
+msgstr "September"
+
+#: core/models.py:123
+msgid "10月"
+msgstr "October"
+
+#: core/models.py:124
+msgid "11月"
+msgstr "November"
+
+#: core/models.py:125
+msgid "12月"
+msgstr "December"
+
+#: core/models.py:362
+msgid "北海道"
+msgstr "Hokkaido"
+
+#: core/models.py:365
+msgid "青森県"
+msgstr "Aomori"
+
+#: core/models.py:366
+msgid "岩手県"
+msgstr "Iwate"
+
+#: core/models.py:367
+msgid "宮城県"
+msgstr "Miyagi"
+
+#: core/models.py:368
+msgid "秋田県"
+msgstr "Akita"
+
+#: core/models.py:369
+msgid "山形県"
+msgstr "Yamagata"
+
+#: core/models.py:370
+msgid "福島県"
+msgstr "Fukushima"
+
+#: core/models.py:373
+msgid "茨城県"
+msgstr "Ibaraki"
+
+#: core/models.py:374
+msgid "栃木県"
+msgstr "Tochigi"
+
+#: core/models.py:375
+msgid "群馬県"
+msgstr "Gunma"
+
+#: core/models.py:376
+msgid "埼玉県"
+msgstr "Saitama"
+
+#: core/models.py:377
+msgid "千葉県"
+msgstr "Chiba"
+
+#: core/models.py:378
+msgid "東京都"
+msgstr "Tokyo"
+
+#: core/models.py:379
+msgid "神奈川県"
+msgstr "Kanagawa"
+
+#: core/models.py:382
+msgid "新潟県"
+msgstr "Niigata"
+
+#: core/models.py:383
+msgid "富山県"
+msgstr "Toyama"
+
+#: core/models.py:384
+msgid "石川県"
+msgstr "Ishikawa"
+
+#: core/models.py:385
+msgid "福井県"
+msgstr "Fukui"
+
+#: core/models.py:386
+msgid "山梨県"
+msgstr "Yamanashi"
+
+#: core/models.py:387
+msgid "長野県"
+msgstr "Nagano"
+
+#: core/models.py:388
+msgid "岐阜県"
+msgstr "Gifu"
+
+#: core/models.py:389
+msgid "静岡県"
+msgstr "Shizuoka"
+
+#: core/models.py:390
+msgid "愛知県"
+msgstr "Aichi"
+
+#: core/models.py:393
+msgid "三重県"
+msgstr "Mie"
+
+#: core/models.py:394
+msgid "滋賀県"
+msgstr "Shiga"
+
+#: core/models.py:395
+msgid "京都府"
+msgstr "Kyoto"
+
+#: core/models.py:396
+msgid "大阪府"
+msgstr "Osaka"
+
+#: core/models.py:397
+msgid "兵庫県"
+msgstr "Hyogo"
+
+#: core/models.py:398
+msgid "奈良県"
+msgstr "Nara"
+
+#: core/models.py:399
+msgid "和歌山県"
+msgstr "Wakayama"
+
+#: core/models.py:402
+msgid "鳥取県"
+msgstr "Tottori"
+
+#: core/models.py:403
+msgid "島根県"
+msgstr "Shimane"
+
+#: core/models.py:404
+msgid "岡山県"
+msgstr "Okayama"
+
+#: core/models.py:405
+msgid "広島県"
+msgstr "Hiroshima"
+
+#: core/models.py:406
+msgid "山口県"
+msgstr "Yamaguchi"
+
+#: core/models.py:409
+msgid "徳島県"
+msgstr "Tokushima"
+
+#: core/models.py:410
+msgid "香川県"
+msgstr "Kagawa"
+
+#: core/models.py:411
+msgid "愛媛県"
+msgstr "Ehime"
+
+#: core/models.py:412
+msgid "高知県"
+msgstr "Kochi"
+
+#: core/models.py:415
+msgid "福岡県"
+msgstr "Fukuoka"
+
+#: core/models.py:416
+msgid "佐賀県"
+msgstr "Saga"
+
+#: core/models.py:417
+msgid "長崎県"
+msgstr "Nagasaki"
+
+#: core/models.py:418
+msgid "熊本県"
+msgstr "Kumamoto"
+
+#: core/models.py:419
+msgid "大分県"
+msgstr "Oita"
+
+#: core/models.py:420
+msgid "宮崎県"
+msgstr "Miyazaki"
+
+#: core/models.py:421
+msgid "鹿児島県"
+msgstr "Kagoshima"
+
+#: core/models.py:422
+msgid "沖縄県"
+msgstr "Okinawa"
+
+#: core/models.py:441
+msgid "男性"
+msgstr "Male"
+
+#: core/models.py:441
+msgid "女性"
+msgstr "Female"
+
+#: core/models.py:449
+msgid "メール"
+msgstr "Email"
+
+#: core/models.py:449
+msgid "電話"
+msgstr "Phone"
+
+#: core/models.py:457
+msgid "自宅"
+msgstr "Home"
+
+#: core/models.py:457
+msgid "勤務先"
+msgstr "Workplace"
+
+#: core/models.py:457
+msgid "携帯"
+msgstr "Cell phone"
+
+#: core/models.py:468
+msgid "特に希望なし"
+msgstr "No particular preference"
+
+#: core/models.py:469
+msgid "午前"
+msgstr "Morning"
+
+#: core/models.py:470
+msgid "午後"
+msgstr "Afternoon"
+
+#: core/models.py:471
+msgid "夕方以降"
+msgstr "Evening or later"
+
+#: core/models.py:480
+msgid "サービスに関するお問い合わせ"
+msgstr "Inquiry about services"
+
+#: core/models.py:481
+msgid "採用に関するお問い合わせ"
+msgstr "Inquiry about recruitment"
+
+#: core/models.py:482
+msgid "その他"
+msgstr "Other inquiry"
+
+#: core/templates/about.html:25
+msgid "画像なし"
+msgstr "No Image"
+
+#: core/templates/about.html:34
+msgid "現在、ページはありません。"
+msgstr "The page does not currently exist."
+
+#: core/templates/base.html:47
+msgid "ロゴなし"
+msgstr "No Logo"
+
+#: core/templates/base.html:70
+msgid "サブページなし"
+msgstr "No Sub Page"
+
+#: core/templates/base.html:124
+msgid "メニュー"
+msgstr "Menu"
+
+#: core/templates/base.html:203 core/templates/page_detail.html:109
+msgid "住所"
+msgstr "Address"
+
+#: core/templates/base.html:212
+msgid "クイックリンク"
+msgstr "Quick Link"
+
+#: core/templates/base.html:231
+msgid "アクセス"
+msgstr "Access"
+
+#: core/templates/contact.html:23
+msgid "お客様情報"
+msgstr "Customer Information"
+
+#: core/templates/contact.html:28
+msgid "学校名 / 法人名"
+msgstr "School name/Company name"
+
+#: core/templates/contact.html:31
+msgid "学生の方は学部・学科まで入力してください。"
+msgstr "For a student, please enter your college and department."
+
+#: core/templates/contact.html:37
+msgid "氏名"
+msgstr "Name"
+
+#: core/templates/contact.html:37 core/templates/contact.html:65
+#: core/templates/contact.html:88 core/templates/contact.html:130
+msgid "必須"
+msgstr "Required"
+
+#: core/templates/contact.html:42
+msgid "全角"
+msgstr "Full-width"
+
+#: core/templates/contact.html:46
+msgid "全角カタカナ"
+msgstr "Full-width katakana"
+
+#: core/templates/contact.html:52
+msgid "年齢・性別"
+msgstr "Age/Sex"
+
+#: core/templates/contact.html:56
+msgid "歳"
+msgstr "yrs."
+
+#: core/templates/contact.html:59
+msgid "採用に関するお問い合わせの場合、入力必須となります。"
+msgstr "This field is required for inquiries regarding recruitment."
+
+#: core/templates/contact.html:65
+msgid "メールアドレス"
+msgstr "Email address"
+
+#: core/templates/contact.html:71
+msgid "注：弊社では、フリーメールアドレスからのメッセージは受信できません。"
+msgstr ""
+"Note: We are unable to receive messages sent from free email addresses."
+
+#: core/templates/contact.html:73
+msgid ""
+"Eメールアドレスのご記入をお願い致します。あらかじめご理解・ご了承をお願い致し"
+"ます。"
+msgstr ""
+"Please enter your email address. We appreciate your understanding and "
+"cooperation in advance."
+
+#: core/templates/contact.html:79
+msgid "ご連絡方法"
+msgstr "How to Contact Us"
+
+#: core/templates/contact.html:82
+msgid ""
+"お問い合わせ内容によって、メールをご希望の場合も電話連絡とさせていただく場合"
+"があります。"
+msgstr ""
+"Depending on the nature of your inquiry, we may contact you by phone even if "
+"you have requested email communication."
+
+#: core/templates/contact.html:88
+msgid "電話番号"
+msgstr "Phone number"
+
+#: core/templates/contact.html:93
+msgid "半角（例: 03-1111-1111）"
+msgstr "Half-width (e.g., 03-1111-1111)"
+
+#: core/templates/contact.html:100
+msgid "都道府県"
+msgstr "Prefecture"
+
+#: core/templates/contact.html:105
+msgid "ご希望連絡時間帯"
+msgstr "Preferred contact time"
+
+#: core/templates/contact.html:107
+msgid "電話連絡の場合のご連絡を希望する時間帯。"
+msgstr "Preferred time for a phone call."
+
+#: core/templates/contact.html:114
+msgid "お問い合わせ内容"
+msgstr "Inquiry Details"
+
+#: core/templates/contact.html:118
+msgid "内容"
+msgstr "Content"
+
+#: core/templates/contact.html:122
+msgid "製品に関するお問い合わせは本ページ最上部、"
+msgstr "For product inquiries, please see the top of this page,"
+
+#: core/templates/contact.html:124
+msgid "(株)Job Cretorより(株)Job Creatorへ直接お問い合わせください。"
+msgstr "Please contact Job Creator Co., Ltd."
+
+#: core/templates/contact.html:130
+msgid "詳細"
+msgstr "Detail"
+
+#: core/templates/contact.html:134
+msgid "お問い合わせ内容を詳しくご記入ください。"
+msgstr "Please provide detailed information regarding your inquiry."
+
+#: core/templates/contact.html:147
+msgid "同意する"
+msgstr "Agree"
+
+#: core/templates/contact.html:152
+msgid "確認画面へ"
+msgstr "Proceed to the confirmation screen"
+
+#: core/templates/contact_confirm.html:6
+msgid "入力内容の確認"
+msgstr ""
+
+#: core/templates/contact_confirm.html:9
+msgid "以下の nội dungでよろしければ「送信する」ボタンを押してください。"
+msgstr ""
+
+#: core/templates/contact_confirm.html:30
+msgid "修正する"
+msgstr ""
+
+#: core/templates/contact_confirm.html:36
+msgid "送信する"
+msgstr ""
+
+#: core/templates/news_detail.html:32
+msgid "前のページへ"
+msgstr "Previous Page"
+
+#: core/templates/news_detail.html:39
+msgid "前のニュースはありません"
+msgstr "No Previous News"
+
+#: core/templates/news_detail.html:54
+msgid "次のページへ"
+msgstr "Next Page"
+
+#: core/templates/news_detail.html:61
+msgid "次のニュースはありません"
+msgstr "No Next News"
+
+#: core/templates/news_list.html:57
+msgid "現在、お知らせはありません。"
+msgstr "The announcement does not currently exist."
+
+#: core/templates/page_detail.html:32
+msgid "現在、会社概要が登録されていません。"
+msgstr "The company profile is currently not registered."
+
+#: core/templates/page_detail.html:62
+msgid "現在、沿革が登録されていません。"
+msgstr "The company history is currently not registered."
+
+#: core/templates/page_detail.html:88
+msgid "代表取締役社長"
+msgstr "President"
+
+#: core/templates/page_detail.html:152
+msgid "現在、拠点情報が登録されていません。"
+msgstr "Location information is currently not registered."
+
+#: core/views.py:30
+msgid "企業情報一覧"
+msgstr "Company List"
+
+#: core/views.py:80
+msgid "ニュース一覧"
+msgstr "News List"
+
+#~ msgid "事業内容を見る"
+#~ msgstr "View Bussiness Detail"

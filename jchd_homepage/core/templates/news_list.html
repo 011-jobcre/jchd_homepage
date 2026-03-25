@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}
+    {{ menu_items.news.name }} | {{ config.company_name }}
+{% endblock title %}
+{% block hero %}
+{% endblock hero %}
+{% block sub_banner %}
+    {% include "partials/_sub_header.html" with banner_title=menu_items.news.name banner_image=menu_items.news.image breadcrumbs=custom_breadcrumbs %}
+{% endblock sub_banner %}
+{% block content %}
+    <section class="bg-white py-12 md:py-20">
+        <div class="max-w-4xl mx-auto px-4">
+            {% if news_list %}
+                <div class="divide-y divide-gray-500 border-t border-gray-500">
+                    {% for news in news_list %}
+                        <a href="{% url 'news_detail' slug=news.slug %}"
+                           class="block group py-6 md:py-8 transition-all hover:bg-gray-50 px-2 md:px-4">
+                            <div class="flex flex-row gap-4 md:gap-8">
+                                <div class="flex items-center">
+                                    <time class="text-gray-500 font-medium tracking-wider text-sm md:text-base">
+                                        {{ news.date|date:"Y.m.d" }}
+                                    </time>
+                                </div>
+                                <div class="flex-grow">
+                                    <h2 class="text-base md:text-xl text-gray-800 font-medium group-hover:text-primary transition-colors flex items-center flex-wrap">
+                                        {{ news.title }}
+                                        {% if news.is_recent %}
+                                            <span class="ml-2 inline-flex items-center justify-center bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm tracking-tighter leading-none transform -translate-y-[1px]">
+                                                NEW
+                                            </span>
+                                        {% endif %}
+                                    </h2>
+                                </div>
+                                <div class="flex-shrink-0 text-right">
+                                    <span class="inline-block transform transition-transform group-hover:translate-x-1">
+                                        <i class="fa-solid fa-angle-right text-gray-300 group-hover:text-primary"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-24 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                    <p class="text-gray-500 font-medium">{% trans "現在、お知らせはありません。" %}</p>
+                </div>
+            {% endif %}
+            <!-- Pagination -->
+            <nav class="mt-16 mb-8 flex flex-col items-center gap-6"
+                 aria-label="Pagination">
+                <div class="flex items-center gap-1 md:gap-3">
+                    <div class="w-10 flex justify-center">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}"
+                               class="text-gray-600 hover:text-primary transition-all duration-300 hover:-translate-x-1">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="flex items-center gap-2 md:gap-4">
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <span class="z-10 w-12 h-12 flex items-center justify-center bg-primary text-white font-bold rounded shadow-sm">
+                                    {{ num }}
+                                </span>
+                            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                                <a href="?page={{ num }}"
+                                   class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-500 hover:border-primary hover:text-primary rounded transform hover:scale-110 transition-all duration-300">
+                                    {{ num }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="w-10 flex justify-center">
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}"
+                               class="text-gray-600 hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+{% endblock content %}

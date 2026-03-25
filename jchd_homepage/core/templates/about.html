@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    {{ menu_items.about.name }} | {{ config.company_name }}
+{% endblock title %}
+{% block hero %}
+{% endblock hero %}
+{% block sub_banner %}
+    {% include "partials/_sub_header.html" with banner_title=menu_items.about.name
+    banner_image=menu_items.about.image breadcrumbs=custom_breadcrumbs %}
+{% endblock sub_banner %}
+{% block content %}
+    <section class="bg-white py-12 md:py-20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="grid md:grid-cols-2 gap-8">
+                {% for page in pages %}
+                    <a href="{% url 'page_detail' slug=page.slug %}"
+                       class="group block bg-gray-50 rounded-xl overflow-hidden shadow hover:shadow-xl transition">
+                        {% if page.image %}
+                            <img src="{{ page.image.url }}"
+                                 alt="{{ page.title }}"
+                                 class="w-full h-48 object-cover" />
+                        {% else %}
+                            <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                                <span class="text-gray-500">{% trans "画像なし" %}</span>
+                            </div>
+                        {% endif %}
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-primary">{{ page.title }}</h3>
+                        </div>
+                    </a>
+                {% empty %}
+                    <div class="text-center py-24 bg-gray-50 rounded-lg col-span-full border border-dashed border-gray-300">
+                        <p class="text-gray-500 font-medium">{% trans "現在、ページはありません。" %}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

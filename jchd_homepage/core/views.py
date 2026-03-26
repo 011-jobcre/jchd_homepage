@@ -55,7 +55,7 @@ class NewsView:
     def news_list(request):
         news_list = News.objects.filter(is_published=True)
 
-        paginator = Paginator(news_list, 2)
+        paginator = Paginator(news_list, 10)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
 

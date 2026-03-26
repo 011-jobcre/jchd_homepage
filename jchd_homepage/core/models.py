@@ -22,7 +22,7 @@ class Page(TranslatableModel):
     translations = TranslatedFields(
         # Example Title: "会社概要", "代表挨拶", "沿革", "経営方針", "グローバルネットワーク"
         title=models.CharField(
-            verbose_name="タイトル",
+            verbose_name=_("タイトル"),
             max_length=200,
             help_text="ページのタイトルを入力します。",
         ),
@@ -30,39 +30,39 @@ class Page(TranslatableModel):
 
     # company-profile, greeting, history, management policies, global-network
     slug = models.SlugField(
-        verbose_name="スラッグ",
+        verbose_name=_("スラッグ"),
         max_length=200,
         unique=True,
         help_text="URLに使用されるスラッグを入力します。",
     )
     page_type = models.CharField(
-        verbose_name="ページタイプ",
+        verbose_name=_("ページタイプ"),
         choices=PAGE_TYPE_CHOICES,
         default="basic_content",
         help_text="ページのタイプを選択します。",
     )
     order = models.PositiveIntegerField(
-        verbose_name="オーダー",
+        verbose_name=_("並び順"),
         db_index=True,
         help_text="ページの表示順序を指定します。",
     )
     # Image for each page
     image = models.ImageField(
-        verbose_name="イメージ",
+        verbose_name=_("イメージ"),
         upload_to="about_img/",
         blank=True,
         null=True,
         help_text="ページのイメージをアップロードします。",
     )
     is_published = models.BooleanField(
-        verbose_name="公開済み",
+        verbose_name=_("公開済み"),
         default=True,
-        help_text="ページを公開するかどうかを設定します。",
+        help_text="ページを公開するかどうかを設定します。",
     )
 
     class Meta:
-        verbose_name = "企業情報"
-        verbose_name_plural = "企業情報一覧"
+        verbose_name = _("企業情報")
+        verbose_name_plural = _("企業情報一覧")
         ordering = ["order"]
 
     def __str__(self):
@@ -76,16 +76,18 @@ class CompanyProfile(TranslatableModel):
 
     translations = TranslatedFields(
         title=models.CharField(
-            verbose_name="タイトル", max_length=20, help_text="タイトルを入力します。"
+            verbose_name=_("タイトル"),
+            max_length=20,
+            help_text="タイトルを入力します。",
         ),
         content=models.CharField(
-            verbose_name="コンテンツ", help_text="コンテンツを入力します。"
+            verbose_name=_("コンテンツ"), help_text="コンテンツを入力します。"
         ),
     )
 
     class Meta:
-        verbose_name = "会社概要"
-        verbose_name_plural = "会社概要一覧"
+        verbose_name = _("会社概要")
+        verbose_name_plural = _("会社概要一覧")
 
     def __str__(self):
         return f"{self.title}"
@@ -98,7 +100,7 @@ class HistoryEvent(TranslatableModel):
 
     translations = TranslatedFields(
         event=models.TextField(
-            verbose_name="イベント", help_text="イベントを入力します。"
+            verbose_name=_("イベント"), help_text="イベントを入力します。"
         )
     )
 
@@ -122,16 +124,16 @@ class HistoryEvent(TranslatableModel):
     ]
 
     year = models.IntegerField(
-        verbose_name="年", choices=YEAR_CHOICES, default=current_year
+        verbose_name=_("年"), choices=YEAR_CHOICES, default=current_year
     )
 
     month = models.IntegerField(
-        verbose_name="月", choices=MONTH_CHOICES, default=current_month
+        verbose_name=_("月"), choices=MONTH_CHOICES, default=current_month
     )
 
     class Meta:
-        verbose_name = "沿革"
-        verbose_name_plural = "沿革一覧"
+        verbose_name = _("沿革")
+        verbose_name_plural = _("沿革一覧")
         ordering = ["year", "month"]
 
     def __str__(self):
@@ -145,28 +147,28 @@ class Greeting(TranslatableModel):
 
     translations = TranslatedFields(
         ceo_name=models.CharField(
-            verbose_name="代表取締役氏名",
+            verbose_name=_("代表取締役氏名"),
             max_length=100,
             default="小森 雅之",
             help_text="代表取締役氏名を入力します。",
         ),
         message=CKEditor5Field(
-            verbose_name="メッセージ",
+            verbose_name=_("メッセージ"),
             help_text="メッセージを入力します。",
             config_name="extends",
         ),
     )
 
     ceo_image = models.ImageField(
-        verbose_name="CEOイメージ",
+        verbose_name=_("CEOイメージ"),
         upload_to="about_img/greeting_ceo_img/",
         blank=True,
         help_text="代表取締役のイメージをアップロードします。",
     )
 
     class Meta:
-        verbose_name = "代表挨拶"
-        verbose_name_plural = "代表挨拶一覧"
+        verbose_name = _("代表挨拶")
+        verbose_name_plural = _("代表挨拶一覧")
 
     def __str__(self):
         return f"Greeting for {self.page.title}"
@@ -180,15 +182,15 @@ class GlobalNetworkLocation(TranslatableModel):
     translations = TranslatedFields(
         # e.g., 本社, 東京営業所
         name=models.CharField(
-            verbose_name="拠点名", max_length=200, help_text="拠点名を入力します。"
+            verbose_name=_("拠点名"), max_length=200, help_text="拠点名を入力します。"
         ),
         address=models.CharField(
-            verbose_name="住所", max_length=200, help_text="住所を入力します。"
+            verbose_name=_("住所"), max_length=200, help_text="住所を入力します。"
         ),
     )
     # 〒824-0005
     postal_code = models.CharField(
-        verbose_name="郵便番号",
+        verbose_name=_("郵便番号"),
         max_length=8,
         blank=True,
         null=True,
@@ -210,14 +212,14 @@ class GlobalNetworkLocation(TranslatableModel):
         help_text="Google Maps URL を入力します。",
     )
     order = models.PositiveIntegerField(
-        verbose_name="オーダー",
+        verbose_name=_("並び順"),
         default=0,
         help_text="拠点の表示順序を指定します。",
     )
 
     class Meta:
-        verbose_name = "拠点"
-        verbose_name_plural = "拠点一覧"
+        verbose_name = _("拠点")
+        verbose_name_plural = _("拠点一覧")
         ordering = ["order"]
 
     def __str__(self):
@@ -241,7 +243,7 @@ class BasicContent(TranslatableModel):
 
     translations = TranslatedFields(
         basic_content=CKEditor5Field(
-            verbose_name="基本コンテンツ",
+            verbose_name=_("基本コンテンツ"),
             help_text="ページの基本コンテンツを入力します。",
             null=True,
             blank=True,
@@ -250,8 +252,8 @@ class BasicContent(TranslatableModel):
     )
 
     class Meta:
-        verbose_name = "基本コンテンツ"
-        verbose_name_plural = "基本コンテンツ一覧"
+        verbose_name = _("基本コンテンツ")
+        verbose_name_plural = _("基本コンテンツ一覧")
 
     def __str__(self):
         return f"Basic Content for {self.page.title}"
@@ -259,35 +261,35 @@ class BasicContent(TranslatableModel):
 
 class News(models.Model):
     title = models.CharField(
-        verbose_name="タイトル",
+        verbose_name=_("タイトル"),
         max_length=200,
         help_text="ニュースのタイトルを入力します。",
     )
     slug = models.SlugField(
-        verbose_name="スラッグ",
+        verbose_name=_("スラッグ"),
         max_length=100,
         unique=True,
         blank=True,
         allow_unicode=True,
-        help_text="URLに使用されるスラッグを入力します。",
+        help_text="URLに使用されるスラッグを入力します。",
     )
     order = models.PositiveIntegerField(
-        verbose_name="オーダー",
+        verbose_name=_("並び順"),
         db_index=True,
         help_text="ニュースの表示順序を指定します。",
     )
     date = models.DateField(
-        verbose_name="日付", default=timezone.now, help_text="日付を入力します。"
+        verbose_name=_("日付"), default=timezone.now, help_text="日付を入力します。"
     )
     content = CKEditor5Field(
-        verbose_name="内容",
+        verbose_name=_("内容"),
         help_text="ニュースの内容を入力します。",
         config_name="extends",
     )
     is_published = models.BooleanField(
-        verbose_name="公開する",
+        verbose_name=_("公開済み"),
         default=True,
-        help_text="公開するかどうかを指定します。",
+        help_text="ニュースを公開するかどうかを設定します。",
     )
     created_at = models.DateTimeField(verbose_name="作成日", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="更新日", auto_now=True)
@@ -316,8 +318,8 @@ class News(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name = "ニュース"
-        verbose_name_plural = "ニュース一覧"
+        verbose_name = _("ニュース")
+        verbose_name_plural = _("ニュース一覧")
         ordering = ["-order", "-date"]
 
     def __str__(self):
@@ -478,22 +480,22 @@ class Contact(models.Model):
 class SiteConfiguration(TranslatableModel):
     translations = TranslatedFields(
         company_name=models.CharField(
-            verbose_name="会社名",
+            verbose_name=_("会社名"),
             max_length=200,
             help_text="会社名を入力します。",
         ),
         company_address=models.CharField(
-            verbose_name="住所", max_length=200, help_text="住所を入力します。"
+            verbose_name=_("住所"), max_length=200, help_text="住所を入力します。"
         ),
         banner_slogan=CKEditor5Field(
-            verbose_name="バナーのスローガン",
+            verbose_name=_("バナーのスローガン"),
             help_text="バナーのスローガンを入力します。",
             config_name="extends",
             null=True,
             blank=True,
         ),
         banner_description=CKEditor5Field(
-            verbose_name="バナーの説明文",
+            verbose_name=_("バナーの説明文"),
             help_text="バナーの説明文を入力します。",
             config_name="extends",
             null=True,
@@ -502,7 +504,7 @@ class SiteConfiguration(TranslatableModel):
     )
 
     company_postal_code = models.CharField(
-        verbose_name="郵便番号", max_length=8, help_text="郵便番号を入力します。"
+        verbose_name=_("郵便番号"), max_length=8, help_text="郵便番号を入力します。"
     )
     company_phone = models.CharField(
         verbose_name="TEL",
@@ -510,19 +512,19 @@ class SiteConfiguration(TranslatableModel):
         help_text="電話番号を入力します。",
     )
     company_email = models.EmailField(
-        verbose_name="メールアドレス",
+        verbose_name=_("メールアドレス"),
         max_length=50,
         help_text="メールアドレスを入力します。",
     )
     logo_image = models.ImageField(
-        verbose_name="ロゴイメージ",
+        verbose_name=_("ロゴイメージ"),
         upload_to="logo/",
         blank=True,
         null=True,
         help_text="ロゴ画像をアップロードします。",
     )
     map_embed = models.TextField(
-        verbose_name="Google Maps埋め込みコード",
+        verbose_name=_("Google Maps埋め込みコード"),
         blank=True,
         null=True,
         help_text="Google Maps埋め込みコードを入力します。",
@@ -551,8 +553,8 @@ class SiteConfiguration(TranslatableModel):
         return self.company_name
 
     class Meta:
-        verbose_name = "サイト構成"
-        verbose_name_plural = "サイト構成一覧"
+        verbose_name = _("サイト構成")
+        verbose_name_plural = _("サイト構成一覧")
 
 
 # ------------------------------------------------------------------
@@ -562,13 +564,14 @@ class MenuItem(TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(
             max_length=100,
-            verbose_name="メニュー項目",
+            verbose_name=_("メニュー項目"),
             help_text="メニュー項目を入力します。",
         ),
     )
 
     site_config = models.ForeignKey(
         SiteConfiguration,
+        verbose_name=_("サイト構成"),
         on_delete=models.CASCADE,
         related_name="menu_items",
         default=SiteConfiguration.get_solo,
@@ -580,12 +583,12 @@ class MenuItem(TranslatableModel):
         help_text="Prefix を入力します。 e.g., about, news, contact, etc.",
     )
     is_active = models.BooleanField(
-        verbose_name="表示する",
+        verbose_name=_("表示する"),
         default=True,
         help_text="メニュー項目を表示するかどうかを選択します。",
     )
     image = models.ImageField(
-        verbose_name="イメージ",
+        verbose_name=_("イメージ"),
         upload_to="menu_img/",
         blank=True,
         null=True,
@@ -593,14 +596,14 @@ class MenuItem(TranslatableModel):
     )
 
     order = models.PositiveIntegerField(
-        verbose_name="並び順",
+        verbose_name=_("並び順"),
         db_index=True,
         help_text="メニュー項目の並び順を入力します。",
     )
 
     class Meta:
-        verbose_name = "メニュー項目"
-        verbose_name_plural = "メニュー項目一覧"
+        verbose_name = _("メニュー項目")
+        verbose_name_plural = _("メニュー項目一覧")
         ordering = ["order"]
 
     def __str__(self):

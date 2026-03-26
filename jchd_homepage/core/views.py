@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _  # Create your views here.
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, View
 
 from .forms import ContactForm
@@ -12,26 +12,25 @@ class HomeView(ListView):
     template_name = "home.html"
 
     def get(self, request):
-        # products = Product.objects.all()[:3]  # 3 sản phẩm nổi bật
-        news = News.objects.all()[:3]  # 3 tin mới
+        # products = Product.objects.all()[:3]
+        news = News.objects.all()[:3]
         return render(request, self.template_name, {"news": news})
 
 
 class AboutView:
     def about_list(request):
         pages = Page.objects.filter(is_published=True)
-        return render(request, "about.html", {"pages": pages})
+        return render(request, "about_list.html", {"pages": pages})
 
     def page_detail(request, slug):
         page = get_object_or_404(Page, slug=slug, is_published=True)
 
-        # Định nghĩa cấu trúc breadcrumbs
         custom_breadcrumbs = [
-            {"name": _("企業情報一覧"), "url": reverse("about_list")},
+            {"name": _("企業情報一覧"), "url": reverse("about")},
             {
                 "name": page.title,
                 "url": "",
-            },  # Trang hiện tại (không cần URL vì là trang cuối)
+            },
         ]
 
         context = {"page": page, "custom_breadcrumbs": custom_breadcrumbs}
@@ -52,11 +51,6 @@ class AboutView:
         return render(request, "page_detail.html", context)
 
 
-# class ProductListView(ListView):
-#     model = Product
-#     template_name = "products.html"
-
-
 class NewsView:
     def news_list(request):
         news_list = News.objects.filter(is_published=True)
@@ -75,16 +69,15 @@ class NewsView:
     def news_detail(request, slug):
         news_detail = get_object_or_404(News, slug=slug, is_published=True)
 
-        # Định nghĩa cấu trúc breadcrumbs
         custom_breadcrumbs = [
-            {"name": _("ニュース一覧"), "url": reverse("news_list")},
+            {"name": _("ニュース一覧"), "url": reverse("news")},
             {
                 "name": news_detail.title,
                 "url": "",
-            },  # Trang hiện tại (không cần URL vì là trang cuối)
+            },
         ]
 
-        # Lấy tin tiếp theo và tin trước đó dựa trên ngày tháng
+        # get next/previous news based on date
         try:
             next_news = news_detail.get_next_by_date()
         except News.DoesNotExist:
@@ -125,7 +118,6 @@ class ContactConfirmView(View):
         if not data:
             return redirect("contact")
 
-        # Khởi tạo form với dữ liệu từ session để hiển thị label/value dễ hơn
         form = ContactForm(data)
         return render(request, "contact_confirm.html", {"form": form, "data": data})
 
@@ -136,7 +128,7 @@ class ContactConfirmView(View):
 
         form = ContactForm(data)
         if form.is_valid():
-            form.save()  # Lưu chính thức vào Database
-            del request.session["contact_data"]  # Xóa session sau khi xong
-            return render(request, "contact_success.html")  # Trang cảm ơn
+            form.save()
+            del request.session["contact_data"]
+            return render(request, "contact_success.html")
         return redirect("contact")

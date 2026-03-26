@@ -13,9 +13,9 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path("", HomeView.as_view(), name="home"),
-    path("about/", AboutView.about_list, name="about_list"),
+    path("about/", AboutView.about_list, name="about"),
     path("about/<slug:slug>/", AboutView.page_detail, name="page_detail"),
-    path("news/", NewsView.news_list, name="news_list"),
+    path("news/", NewsView.news_list, name="news"),
     re_path(
         r"^news/(?P<slug>[-\w\u3000-\u9FFF]+)/$",
         NewsView.news_detail,

@@ -22,7 +22,7 @@
     <div class="max-w-6xl mx-auto px-4">
         <ol class="flex items-center space-x-2 text-sm text-gray-500">
             <li class="flex items-center">
-                <a href="{% url 'home' %}" class="hover:text-primary transition-colors"><i class="fa-regular fa-house pr-2"></i>{{ menu_items.home.name }}</a>
+                <a href="{% url 'home' %}" class="hover:text-primary transition-colors"><i class="fa-solid fa-house pr-2"></i>{{ menu_items.home.name }}</a>
             </li>
             {% for crumb in breadcrumbs %}
                 <li class="flex items-center">

@@ -574,15 +574,15 @@ class MenuItem(TranslatableModel):
         default=SiteConfiguration.get_solo,
         help_text="メニュー項目を入力します。",
     )
-    url_prefix = models.CharField(
+    prefix = models.CharField(
         max_length=200,
         blank=True,
-        help_text="URL prefix を入力します。 e.g., /about/, /business/",
+        help_text="Prefix を入力します。 e.g., about, news, contact, etc.",
     )
     is_active = models.BooleanField(
         verbose_name="表示する",
         default=True,
-        help_text="メニュー項目を表示するかどうかを選択します。",
+        help_text="メニュー項目を表示するかどうかを選択します。",
     )
     image = models.ImageField(
         verbose_name="イメージ",
@@ -592,12 +592,6 @@ class MenuItem(TranslatableModel):
         help_text="メニュー項目のイメージをアップロードします。",
     )
 
-    key = models.CharField(
-        verbose_name="キー",
-        max_length=50,
-        unique=True,
-        help_text="メニュー項目のキーを入力します。",
-    )
     order = models.PositiveIntegerField(
         verbose_name="並び順",
         db_index=True,

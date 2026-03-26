@@ -49,15 +49,15 @@
                     <!-- DESKTOP MENU -->
                     <div class="hidden md:flex items-center space-x-10 font-medium text-lg">
                         {% for item in sorted_menu_items %}
-                            {% if item.key == "home" %}
-                                <a href="{{ menu_items.home.url_prefix }}"
-                                   class="hover:text-primary transition-colors duration-300">{{ menu_items.home.name }}</a>
-                            {% elif item.key == "about" %}
+                            {% if item.prefix == "home" %}
+                                <a href="{% url item.prefix %}"
+                                   class="hover:text-primary transition-colors duration-300">{{ item.name }}</a>
+                            {% elif item.prefix == "about" %}
                                 <!-- DROPDOWN 会社概要 -->
                                 <div class="relative group">
-                                    <a href="{{ menu_items.about.url_prefix }}"
+                                    <a href="{% url item.prefix %}"
                                        class="flex items-center hover:text-primary transition-colors duration-300">
-                                        {{ menu_items.about.name }}
+                                        {{ item.name }}
                                         <i class="fa-solid fa-chevron-down ml-2 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
                                     </a>
                                     <div class="absolute left-0 top-full mt-4 w-64 bg-white shadow-xl rounded-xl py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100 origin-top">
@@ -71,13 +71,13 @@
                                         {% endfor %}
                                     </div>
                                 </div>
-                            {% elif item.key == "news" %}
+                            {% elif item.prefix == "news" %}
                                 {% if LANGUAGE_CODE == "ja" %}
-                                    <a href="{{ menu_items.news.url_prefix }}"
-                                       class="hover:text-primary transition-colors duration-300">{{ menu_items.news.name }}</a>
+                                    <a href="{% url item.prefix %}"
+                                       class="hover:text-primary transition-colors duration-300">{{ item.name }}</a>
                                 {% endif %}
                             {% else %}
-                                <a href="{{ item.url_prefix }}"
+                                <a href="{% url item.prefix %}"
                                    class="hover:text-primary transition-colors duration-300">{{ item.name }}</a>
                             {% endif %}
                         {% endfor %}
@@ -129,13 +129,13 @@
                         </div>
                         <div class="flex-1 flex flex-col items-center justify-center space-y-10 text-2xl font-medium">
                             {% for item in sorted_menu_items %}
-                                {% if item.key == "news" %}
+                                {% if item.prefix == "news" %}
                                     {% if LANGUAGE_CODE == 'ja' %}
-                                        <a href="{{ menu_items.news.url_prefix }}"
-                                           class="hover:text-primary transition-colors duration-300">{{ menu_items.news.name }}</a>
+                                        <a href="{% url item.prefix %}"
+                                           class="hover:text-primary transition-colors duration-300">{{ item.name }}</a>
                                     {% endif %}
                                 {% else %}
-                                    <a href="{{ item.url_prefix }}"
+                                    <a href="{% url item.prefix %}"
                                        class="hover:text-primary transition-colors duration-300">{{ item.name }}</a>
                                 {% endif %}
                             {% endfor %}
@@ -217,13 +217,13 @@
                             <ul class="space-y-3 text-lg opacity-90">
                                 {% for item in sorted_menu_items %}
                                     <li>
-                                        {% if item.key == "news" %}
+                                        {% if item.prefix == "news" %}
                                             {% if LANGUAGE_CODE == 'ja' %}
-                                                <a href="{{ menu_items.news.url_prefix }}"
-                                                   class="hover:text-primary transition-colors duration-300">{{ menu_items.news.name }}</a>
+                                                <a href="{% url item.prefix %}"
+                                                   class="hover:text-primary transition-colors duration-300">{{ item.name }}</a>
                                             {% endif %}
                                         {% else %}
-                                            <a href="{{ item.url_prefix }}"
+                                            <a href="{% url item.prefix %}"
                                                class="hover:text-accent transition-colors duration-200">{{ item.name }}</a>
                                         </li>
                                     {% endif %}

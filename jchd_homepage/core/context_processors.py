@@ -10,6 +10,6 @@ def menu_pages(request):
     menu_items = config.menu_items.filter(is_active=True).order_by("order")
 
     return {
-        "menu_items": {item.key: item for item in menu_items},
+        "menu_items": {item.prefix: item for item in menu_items},
         "sorted_menu_items": list(menu_items),
     }

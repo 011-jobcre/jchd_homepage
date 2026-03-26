@@ -11,13 +11,13 @@
 {% block content %}
     <section class="py-12 md:py-16 bg-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            {# Hiển thị lỗi tổng quát nếu có #}
+            <!-- display general errors if any -->
             {% if form.non_field_errors %}
                 <div class="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700">{{ form.non_field_errors }}</div>
             {% endif %}
             <form method="post" novalidate class="space-y-8">
                 {% csrf_token %}
-                <!-- Phần 1: お客様情報 -->
+                <!-- Part 1: お客様情報 -->
                 <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                     <div class="bg-blue-50 px-6 py-4 border-b border-blue-100">
                         <h2 class="text-xl font-bold text-primary">{% trans "お客様情報" %}</h2>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Phần 2: お問い合わせ内容 -->
+                <!-- Part 2: お問い合わせ内容 -->
                 <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                     <div class="bg-blue-50 px-6 py-4 border-b border-blue-100">
                         <h2 class="text-xl font-bold text-primary">{% trans "お問い合わせ内容" %}</h2>
@@ -156,11 +156,11 @@
         </div>
     </section>
     <script>
-    // Script đơn giản để disable nút submit nếu chưa check đồng ý (Tăng UX)
+    // Javascript for enabling/disabling the submit button based on the checkbox state
     const checkbox = document.querySelector('input[name="agree"]');
     const btn = document.getElementById('submit-btn');
     
-    // Khởi tạo trạng thái
+    // Initialize state
     btn.disabled = !checkbox.checked;
 
     checkbox.addEventListener('change', function() {

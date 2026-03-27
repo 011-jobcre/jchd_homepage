@@ -399,40 +399,43 @@ class Prefecture(models.TextChoices):
 
 class Contact(models.Model):
     company_name = models.CharField(
-        max_length=255, blank=True, verbose_name="学校名 / 法人名"
+        max_length=255, blank=True, verbose_name=_("学校名 / 法人名")
     )
 
-    last_name = models.CharField(max_length=50, verbose_name="氏（姓）")
-    first_name = models.CharField(max_length=50, verbose_name="名")
-    last_name_kana = models.CharField(max_length=50, verbose_name="セイ")
-    first_name_kana = models.CharField(max_length=50, verbose_name="メイ")
+    last_name = models.CharField(max_length=50, verbose_name=_("姓"))
+    first_name = models.CharField(max_length=50, verbose_name=_("名"))
+    last_name_kana = models.CharField(max_length=50, verbose_name=_("セイ"))
+    first_name_kana = models.CharField(max_length=50, verbose_name=_("メイ"))
 
-    age = models.PositiveIntegerField(null=True, blank=True, verbose_name="年齢")
+    age = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("年齢"))
     gender = models.CharField(
         max_length=10,
         choices=[("male", _("男性")), ("female", _("女性"))],
         blank=True,
-        verbose_name="性別",
+        verbose_name=_("性別"),
     )
 
-    email = models.EmailField(verbose_name="メールアドレス")
+    email = models.EmailField(verbose_name=_("メールアドレス"))
     contact_method = models.CharField(
         max_length=10,
         choices=[("email", _("メール")), ("phone", _("電話"))],
         default="email",
-        verbose_name="ご連絡方法",
+        verbose_name=_("ご連絡方法"),
     )
 
-    phone_number = models.CharField(max_length=20, verbose_name="電話番号")
+    phone_number = models.CharField(max_length=20, verbose_name=_("電話番号"))
     phone_type = models.CharField(
         max_length=10,
         choices=[("home", _("自宅")), ("work", _("勤務先")), ("mobile", _("携帯"))],
         default="home",
-        verbose_name="電話種別",
+        verbose_name=_("電話種別"),
     )
 
     prefecture = models.CharField(
-        max_length=50, choices=Prefecture.choices, verbose_name="都道府県", blank=True
+        max_length=50,
+        choices=Prefecture.choices,
+        verbose_name=_("都道府県"),
+        blank=True,
     )
     contact_time = models.CharField(
         max_length=50,
@@ -443,7 +446,7 @@ class Contact(models.Model):
             ("evening", _("夕方以降")),
         ],
         default="nothing",
-        verbose_name="時間帯",
+        verbose_name=_("時間帯"),
     )
 
     content_type = models.CharField(
@@ -454,15 +457,15 @@ class Contact(models.Model):
             ("other", _("その他")),
         ],
         default="service",
-        verbose_name="内容",
+        verbose_name=_("内容"),
     )
-    detail = models.TextField(verbose_name="詳細")
+    detail = models.TextField(verbose_name=_("詳細"))
 
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="送信日時")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("送信日時"))
     is_processed = models.BooleanField(
-        verbose_name="対応済み",
+        verbose_name=_("対応済み"),
         default=False,
-        help_text="対応済みかどうかを指定します。",
+        help_text=_("対応済みかどうかを指定します。"),
     )
 
     class Meta:
@@ -532,7 +535,6 @@ class SiteConfiguration(TranslatableModel):
     contact_email = models.CharField(
         verbose_name=_("お問い合わせ通知用メールアドレス"),
         max_length=255,
-        default="011@jobcre.net",
         help_text="お問い合わせがあった際に通知を送信するメールアドレスを入力します。複数を指定する場合はカンマ(,)で区切ってください。",
     )
 

@@ -14,7 +14,6 @@ django-ckeditor-5==0.2.20
 django-js-asset==3.1.2
 django-parler==2.3
 django-solo==2.5.1
-django-tailwind==3.8.0
 djlint==1.36.4
 EditorConfig==0.17.1
 gunicorn==25.2.0

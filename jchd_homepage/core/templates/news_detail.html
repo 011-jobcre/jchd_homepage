@@ -11,16 +11,14 @@
 {% block content %}
     <section class="py-12 md:py-20 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6">
-            <article class="border-b border-gray-100 pb-16">
+            <article class="overflow-hidden border-b border-gray-100 pb-16">
                 <header class="mb-10">
                     <div class="flex items-center mb-6">
                         <time class="text-gray-500 font-medium tracking-wider">{{ news_detail.date|date:"Y.m.d" }}</time>
                     </div>
                     <h1 class="text-2xl md:text-4xl font-bold text-gray-900 leading-tight md:leading-snug">{{ news_detail.title }}</h1>
                 </header>
-                <div class="prose prose-slate max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-loose prose-img:rounded-lg prose-a:text-primary">
-                    {{ news_detail.content|safe }}
-                </div>
+                <div class="prose max-w-none ck-content">{{ news_detail.content|safe }}</div>
             </article>
             <nav class="mt-16">
                 <div class="flex flex-row border-t border-b border-gray-200">

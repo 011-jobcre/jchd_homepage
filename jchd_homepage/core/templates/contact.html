@@ -26,9 +26,10 @@
                         <!-- 学校名 / 法人名 -->
                         <div class="px-6 py-5 grid md:grid-cols-4 gap-4 items-center">
                             <label class="md:col-span-1 font-medium text-gray-700">{% trans "学校名 / 法人名" %}</label>
-                            <div class="md:col-span-3 grid grid-cols-2 gap-4">
+                            <div class="md:col-span-3">
                                 {{ form.company_name }}
-                                <p class="mt-1 text-xs text-gray-500 content-center">※{% trans "学生の方は学部・学科まで入力してください。" %}</p>
+                                {% if form.company_name.errors %}<p class="mt-1 text-xs text-red-500">{{ form.company_name.errors.0 }}</p>{% endif %}
+                                <p class="mt-1 text-xs text-gray-500">※{% trans "学生の方は学部・学科まで入力してください。" %}</p>
                             </div>
                         </div>
                         <!-- 氏名 -->
@@ -37,26 +38,46 @@
                                 {% trans "氏名" %} <span class="ml-2 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">{% trans "必須" %}</span>
                             </label>
                             <div class="md:col-span-3 space-y-4">
-                                <div class="grid grid-cols-3 gap-4">
-                                    {{ form.last_name }} {{ form.first_name }}
-                                    <p class="text-xs text-gray-500 content-center">※{% trans "全角" %}</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="space-y-1">
+                                        {{ form.last_name }}
+                                        {% if form.last_name.errors %}<p class="text-xs text-red-500">{{ form.last_name.errors.0 }}</p>{% endif %}
+                                    </div>
+                                    <div class="space-y-1">
+                                        {{ form.first_name }}
+                                        {% if form.first_name.errors %}<p class="text-xs text-red-500">{{ form.first_name.errors.0 }}</p>{% endif %}
+                                    </div>
+                                    <p class="text-xs text-gray-500 flex items-center">※{% trans "全角" %}</p>
                                 </div>
-                                <div class="grid grid-cols-3 gap-4">
-                                    {{ form.last_name_kana }} {{ form.first_name_kana }}
-                                    <p class="text-xs text-gray-500 content-center">※{% trans "全角カタカナ" %}</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="space-y-1">
+                                        {{ form.last_name_kana }}
+                                        {% if form.last_name_kana.errors %}<p class="text-xs text-red-500">{{ form.last_name_kana.errors.0 }}</p>{% endif %}
+                                    </div>
+                                    <div class="space-y-1">
+                                        {{ form.first_name_kana }}
+                                        {% if form.first_name_kana.errors %}<p class="text-xs text-red-500">{{ form.first_name_kana.errors.0 }}</p>{% endif %}
+                                    </div>
+                                    <p class="text-xs text-gray-500 flex items-center">※{% trans "全角カタカナ" %}</p>
                                 </div>
                             </div>
                         </div>
                         <!-- 年齢・性別 -->
                         <div class="px-6 py-5 grid md:grid-cols-4 gap-4 items-center">
                             <label class="md:col-span-1 font-medium text-gray-700">{% trans "年齢・性別" %}</label>
-                            <div class="md:col-span-3 grid grid-cols-3 gap-4">
-                                <div class="flex items-center gap-4">
-                                    {{ form.age }}
-                                    <p class="text-sm text-gray-500">{% trans "歳" %}</p>
+                            <div class="md:col-span-3">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                                    <div class="flex items-center gap-4">
+                                        {{ form.age }}
+                                        <p class="text-sm text-gray-500">{% trans "歳" %}</p>
+                                    </div>
+                                    <div>
+                                        {{ form.gender }}
+                                        {% if form.gender.errors %}<p class="text-xs text-red-500">{{ form.gender.errors.0 }}</p>{% endif %}
+                                    </div>
+                                    <p class="text-xs text-gray-500">※{% trans "採用に関するお問い合わせの場合、入力必須となります。" %}</p>
                                 </div>
-                                {{ form.gender }}
-                                <p class="text-xs text-gray-500 content-center gap-4">※{% trans "採用に関するお問い合わせの場合、入力必須となります。" %}</p>
+                                {% if form.age.errors %}<p class="mt-2 text-xs text-red-500">{{ form.age.errors.0 }}</p>{% endif %}
                             </div>
                         </div>
                         <!-- Email -->
@@ -65,8 +86,14 @@
                                 {% trans "メールアドレス" %} <span class="ml-2 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">{% trans "必須" %}</span>
                             </label>
                             <div class="md:col-span-3 space-y-4">
-                                {{ form.email }}
-                                {{ form.email_confirm }}
+                                <div class="space-y-2">
+                                    {{ form.email }}
+                                    {% if form.email.errors %}<p class="text-xs text-red-500">{{ form.email.errors.0 }}</p>{% endif %}
+                                </div>
+                                <div class="space-y-2">
+                                    {{ form.email_confirm }}
+                                    {% if form.email_confirm.errors %}<p class="text-xs text-red-500">{{ form.email_confirm.errors.0 }}</p>{% endif %}
+                                </div>
                                 <div class="text-sm text-red-600 bg-red-50 p-3 rounded-lg border border-red-200">
                                     {% trans "注：弊社では、フリーメールアドレスからのメッセージは受信できません。" %}
                                     <br>
@@ -88,9 +115,12 @@
                                 {% trans "電話番号" %} <span class="ml-2 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">{% trans "必須" %}</span>
                             </label>
                             <div class="md:col-span-3 space-y-4">
-                                <div class="grid grid-cols-3 gap-4">
-                                    {{ form.phone_number }}
-                                    <p class="text-xs text-gray-500 content-center">※{% trans "半角（例: 03-1111-1111）" %}</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="space-y-1">
+                                        {{ form.phone_number }}
+                                        {% if form.phone_number.errors %}<p class="text-xs text-red-500">{{ form.phone_number.errors.0 }}</p>{% endif %}
+                                    </div>
+                                    <p class="text-xs text-gray-500 flex items-center">※{% trans "半角（例: 03-1111-1111）" %}</p>
                                 </div>
                                 {{ form.phone_type }}
                             </div>
@@ -98,7 +128,10 @@
                         <!-- 都道府県 -->
                         <div class="px-6 py-5 grid md:grid-cols-4 gap-4 items-center">
                             <label class="md:col-span-1 font-medium text-gray-700">{% trans "都道府県" %}</label>
-                            <div class="md:col-span-1">{{ form.prefecture }}</div>
+                            <div class="md:col-span-1">
+                                {{ form.prefecture }}
+                                {% if form.prefecture.errors %}<p class="mt-1 text-xs text-red-500">{{ form.prefecture.errors.0 }}</p>{% endif %}
+                            </div>
                         </div>
                         <!-- ご希望連絡時間帯 -->
                         <div class="px-6 py-5 grid md:grid-cols-4 gap-4 items-center">
@@ -121,7 +154,7 @@
                                 <div class="text-sm text-gray-500 bg-gray-50 p-4 rounded-lg border border-gray-200">
                                     ※{% trans "製品に関するお問い合わせは本ページ最上部、" %}
                                     <br>
-                                    {% trans "(株)Job Cretorより(株)Job Creatorへ直接お問い合わせください。" %}
+                                    {% trans "(株)Job Creatorより(株)Job Creatorへ直接お問い合わせください。" %}
                                 </div>
                             </div>
                         </div>
@@ -131,6 +164,7 @@
                             </label>
                             <div class="md:col-span-3 space-y-2">
                                 {{ form.detail }}
+                                {% if form.detail.errors %}<p class="text-xs text-red-500">{{ form.detail.errors.0 }}</p>{% endif %}
                                 <p class="text-xs text-gray-500">※{% trans "お問い合わせ内容を詳しくご記入ください。" %}</p>
                             </div>
                         </div>
@@ -148,7 +182,9 @@
                         </label>
                     </div>
                     <button type="submit"
-                            class="inline-flex items-center px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-300 text-lg">
+                            id="submit-btn"
+                            disabled
+                            class="inline-flex items-center px-10 py-4 bg-gray-400 cursor-not-allowed text-white font-bold rounded-lg shadow-lg transition-all transform focus:outline-none focus:ring-4 focus:ring-blue-300 text-lg">
                         {% trans "確認画面へ" %}
                     </button>
                 </div>
@@ -160,15 +196,21 @@
     const checkbox = document.querySelector('input[name="agree"]');
     const btn = document.getElementById('submit-btn');
     
-    // Initialize state
-    btn.disabled = !checkbox.checked;
-
-    checkbox.addEventListener('change', function() {
-        btn.disabled = !this.checked;
-        if(this.checked) {
-            btn.classList.add('transform', 'scale-105');
-            setTimeout(() => btn.classList.remove('scale-105'), 200);
+    function updateBtnState() {
+        if (checkbox.checked) {
+            btn.disabled = false;
+            btn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+            btn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'hover:-translate-y-1');
+        } else {
+            btn.disabled = true;
+            btn.classList.add('bg-gray-400', 'cursor-not-allowed');
+            btn.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'hover:-translate-y-1');
         }
-    });
+    }
+
+    checkbox.addEventListener('change', updateBtnState);
+    
+    // Initialize state on load
+    updateBtnState();
     </script>
 {% endblock content %}

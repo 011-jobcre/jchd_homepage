@@ -1,41 +1,54 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% block title %}
+    {% trans "入力内容の確認" %} | {{ config.company_name }}
+{% endblock title %}
+{% block hero %}
+{% endblock hero %}
+{% block sub_banner %}
+    {% include "partials/_sub_header.html" with banner_title=menu_items.contact.name banner_image=menu_items.contact.image breadcrumbs=custom_breadcrumbs %}
+{% endblock sub_banner %}
 {% block content %}
-    <section class="py-12 bg-gray-50">
+    <section class="py-12 md:py-16 bg-white">
         <div class="max-w-4xl mx-auto px-4">
-            <h1 class="text-3xl font-bold text-center mb-8">{% trans "入力内容の確認" %}</h1>
-            <div class="bg-white shadow-sm border border-gray-200 rounded-xl overflow-hidden">
-                <div class="p-8 space-y-6">
-                    <p class="text-gray-600 text-center mb-6">{% trans "以下の内容でよろしければ「送信する」ボタンを押してください。" %}</p>
-                    <dl class="divide-y divide-gray-200">
-                        {% for field in form %}
-                            {% if field.name != 'agree' and field.name != 'email_confirm' %}
-                                <div class="py-4 grid grid-cols-3 gap-4">
-                                    <dt class="font-bold text-gray-700">{{ field.label }}</dt>
-                                    <dd class="col-span-2 text-gray-900">
-                                        {% if field.field.choices %}
-                                            {{ field.value|default:"-" }}
-                                        {% else %}
-                                            {{ field.value|linebreaksbr|default:"-" }}
-                                        {% endif %}
-                                    </dd>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </dl>
-                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="{% url 'contact' %}"
-                           class="px-8 py-3 border border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-100 text-center transition">
-                            {% trans "修正する" %}
-                        </a>
-                        <form method="post">
-                            {% csrf_token %}
-                            <button type="submit"
-                                    class="w-full px-12 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg transition">
-                                {% trans "送信する" %}
-                            </button>
-                        </form>
-                    </div>
+            <div class="mb-10 text-center">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">{% trans "入力内容の確認" %}</h1>
+                <p class="text-gray-600">{% trans "以下の内容でよろしければ「送信する」ボタンを押してください。" %}</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                <div class="bg-blue-50 px-6 py-4 border-b border-blue-100">
+                    <h2 class="text-xl font-bold text-primary">{% trans "お問い合わせ内容の確認" %}</h2>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    {% for field in form %}
+                        {% if field.name != 'agree' and field.name != 'email_confirm' %}
+                            <div class="px-6 py-4 grid md:grid-cols-3 gap-4">
+                                <dt class="font-bold text-gray-700">{{ field.label }}</dt>
+                                <dd class="md:col-span-2 text-gray-900 leading-relaxed">
+                                    {% if field.field.choices %}
+                                        {{ field.value|default:"-" }}
+                                    {% else %}
+                                        {{ field.value|linebreaksbr|default:"-" }}
+                                    {% endif %}
+                                </dd>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="p-8 bg-gray-50 flex flex-col sm:flex-row gap-6 justify-center border-t border-gray-200">
+                    <a href="{% url 'contact' %}"
+                       class="inline-flex items-center justify-center px-10 py-4 border border-gray-300 bg-white text-gray-700 font-bold rounded-lg hover:bg-gray-100 shadow-sm transition transform hover:-translate-y-1">
+                        <i class="fa-solid fa-arrow-left mr-2"></i>
+                        {% trans "修正する" %}
+                    </a>
+                    <form method="post" class="w-full sm:w-auto">
+                        {% csrf_token %}
+                        <button type="submit"
+                                class="w-full sm:w-auto inline-flex items-center justify-center px-16 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg transition transform hover:-translate-y-1">
+                            {% trans "送信する" %}
+                            <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

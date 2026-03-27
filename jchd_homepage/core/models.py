@@ -149,7 +149,7 @@ class Greeting(TranslatableModel):
         ceo_name=models.CharField(
             verbose_name=_("代表取締役氏名"),
             max_length=100,
-            default="小森 雅之",
+            default="CEO Name",
             help_text="代表取締役氏名を入力します。",
         ),
         message=CKEditor5Field(
@@ -432,7 +432,7 @@ class Contact(models.Model):
     )
 
     prefecture = models.CharField(
-        max_length=50, choices=Prefecture.choices, verbose_name="都道府県"
+        max_length=50, choices=Prefecture.choices, verbose_name="都道府県", blank=True
     )
     contact_time = models.CharField(
         max_length=50,
@@ -528,6 +528,12 @@ class SiteConfiguration(TranslatableModel):
         blank=True,
         null=True,
         help_text="Google Maps埋め込みコードを入力します。",
+    )
+    contact_email = models.CharField(
+        verbose_name=_("お問い合わせ通知用メールアドレス"),
+        max_length=255,
+        default="011@jobcre.net",
+        help_text="お問い合わせがあった際に通知を送信するメールアドレスを入力します。複数を指定する場合はカンマ(,)で区切ってください。",
     )
 
     # ----------------- Singleton pattern -----------------

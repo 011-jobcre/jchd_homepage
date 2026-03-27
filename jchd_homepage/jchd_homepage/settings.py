@@ -12,6 +12,20 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG") == "True"
 
+# Email Configuration
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", 587))
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True") == "True"
+EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", "False") == "True"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 INSTALLED_APPS = [
@@ -22,8 +36,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # サードパーティ
-    "tailwind",
-    "theme",
     "django_ckeditor_5",
     "adminsortable2",
     "parler",
@@ -126,8 +138,6 @@ DATE_INPUT_FORMATS = [
     # add more formats
 ]
 
-TAILWIND_APP_NAME = "theme"
-
 PARLER_DEFAULT_LANGUAGE_CODE = "ja"
 PARLER_LANGUAGES = {
     None: (
@@ -150,13 +160,8 @@ customColorPalette = [
     {"color": "hsl(207, 90%, 54%)", "label": "Blue"},
 ]
 
-CKEDITOR_5_CUSTOM_CSS = "path_to.css"
-CKEDITOR_5_FILE_STORAGE = "path_to_storage.CustomStorage"
-
-CKEDITOR_5_FILE_UPLOAD_PERMISSION = (
-    "any"  # Possible values: "staff", "authenticated", "any"
-)
-
+CKEDITOR_5_CUSTOM_CSS = "path_to.css"  # optional
+CKEDITOR_5_FILE_STORAGE = "path_to_storage.CustomStorage"  # optional
 CKEDITOR_5_CONFIGS = {
     "default": {
         "toolbar": {
@@ -293,3 +298,7 @@ CKEDITOR_5_CONFIGS = {
         }
     },
 }
+# Define a constant in settings.py to specify file upload permissions
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = (
+    "staff"  # Possible values: "staff", "authenticated", "any"
+)

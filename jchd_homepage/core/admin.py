@@ -82,6 +82,7 @@ class SiteConfigurationAdmin(TranslatableAdmin):
         "company_address",
         "company_phone",
         "company_email",
+        "contact_email",
         "logo_image",
         "map_embed",
         "banner_slogan",

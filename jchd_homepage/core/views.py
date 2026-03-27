@@ -9,12 +9,9 @@ from .models import News, Page
 
 
 class HomeView(ListView):
-    template_name = "home.html"
-
     def get(self, request):
-        # products = Product.objects.all()[:3]
         news = News.objects.all()[:3]
-        return render(request, self.template_name, {"news": news})
+        return render(request, "home.html", {"news": news})
 
 
 class AboutView:
@@ -106,7 +103,6 @@ class ContactView(View):
     def post(self, request):
         form = ContactForm(request.POST)
         if form.is_valid():
-            # Lưu dữ liệu vào session để dùng ở trang confirm
             request.session["contact_data"] = request.POST
             return redirect("contact_confirm")
         return render(request, "contact.html", {"form": form})
@@ -128,7 +124,44 @@ class ContactConfirmView(View):
 
         form = ContactForm(data)
         if form.is_valid():
-            form.save()
+            contact = form.save()
+
+            # send email notification
+            from django.core.mail import send_mail
+            from django.template.loader import render_to_string
+
+            subject = f"【お問い合わせ】{contact.last_name} {contact.first_name}様より"
+            message = render_to_string(
+                "emails/contact_notification.txt", {"contact": contact}
+            )
+
+            try:
+                from django.conf import settings
+
+                from core.models import SiteConfiguration
+
+                config = SiteConfiguration.get_solo()
+                # Split email string by comma and remove whitespace
+                recipient_list = [
+                    email.strip()
+                    for email in config.contact_email.split(",")
+                    if email.strip()
+                ]
+                print(recipient_list)
+                if recipient_list:
+                    send_mail(
+                        subject,
+                        message,
+                        settings.DEFAULT_FROM_EMAIL,  # from_email
+                        recipient_list,  # to_email
+                        fail_silently=False,
+                    )
+            except Exception as e:
+                import traceback
+
+                print(f"Error sending email: {e}")
+                traceback.print_exc()
+
             del request.session["contact_data"]
             return render(request, "contact_success.html")
         return redirect("contact")

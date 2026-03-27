@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-26 15:11+0900\n"
+"POT-Creation-Date: 2026-03-27 11:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,33 +46,25 @@ msgstr ""
 msgid "メイ"
 msgstr ""
 
-#: core/forms.py:37
-msgid "例: example@domain.com"
-msgstr ""
-
-#: core/forms.py:40
-msgid "例: 03-1111-1111"
-msgstr ""
-
-#: core/forms.py:87
+#: core/forms.py:82
 msgid "メールアドレスが一致しません。もう一度入力してください。"
 msgstr ""
 
-#: core/forms.py:104
+#: core/forms.py:99
 msgid ""
 "フリーメールアドレスはご利用いただけません。会社・学校のメールアドレスをご利"
 "用ください。"
 msgstr ""
 
-#: core/forms.py:113
+#: core/forms.py:108
 msgid "採用に関するお問い合わせの場合、年齢の入力は必須です。"
 msgstr ""
 
-#: core/forms.py:123
+#: core/forms.py:118
 msgid "有効な電話番号を入力してください。"
 msgstr ""
 
-#: core/forms.py:129 core/forms.py:135
+#: core/forms.py:124 core/forms.py:130
 msgid "全角カタカナで入力してください。"
 msgstr ""
 
@@ -88,11 +80,11 @@ msgstr ""
 msgid "ページタイプ"
 msgstr ""
 
-#: core/models.py:45 core/models.py:215 core/models.py:277 core/models.py:599
+#: core/models.py:45 core/models.py:215 core/models.py:277 core/models.py:605
 msgid "並び順"
 msgstr ""
 
-#: core/models.py:51 core/models.py:591
+#: core/models.py:51 core/models.py:597
 msgid "イメージ"
 msgstr ""
 
@@ -104,7 +96,7 @@ msgstr ""
 msgid "企業情報"
 msgstr ""
 
-#: core/models.py:65 core/views.py:29
+#: core/models.py:65 core/views.py:26
 msgid "企業情報一覧"
 msgstr ""
 
@@ -241,7 +233,7 @@ msgstr ""
 msgid "日付"
 msgstr ""
 
-#: core/models.py:285 core/templates/contact.html:118
+#: core/models.py:285 core/templates/contact.html:151
 msgid "内容"
 msgstr ""
 
@@ -249,7 +241,7 @@ msgstr ""
 msgid "ニュース"
 msgstr ""
 
-#: core/models.py:322 core/views.py:73
+#: core/models.py:322 core/views.py:70
 msgid "ニュース一覧"
 msgstr ""
 
@@ -509,7 +501,7 @@ msgstr ""
 msgid "バナーの説明文"
 msgstr ""
 
-#: core/models.py:515 core/templates/contact.html:65
+#: core/models.py:515 core/templates/contact.html:86
 msgid "メールアドレス"
 msgstr ""
 
@@ -521,23 +513,27 @@ msgstr ""
 msgid "Google Maps埋め込みコード"
 msgstr ""
 
-#: core/models.py:556 core/models.py:574
+#: core/models.py:533
+msgid "お問い合わせ通知用メールアドレス"
+msgstr ""
+
+#: core/models.py:562 core/models.py:580
 msgid "サイト構成"
 msgstr ""
 
-#: core/models.py:557
+#: core/models.py:563
 msgid "サイト構成一覧"
 msgstr ""
 
-#: core/models.py:567 core/models.py:605
+#: core/models.py:573 core/models.py:611
 msgid "メニュー項目"
 msgstr ""
 
-#: core/models.py:586
+#: core/models.py:592
 msgid "表示する"
 msgstr ""
 
-#: core/models.py:606
+#: core/models.py:612
 msgid "メニュー項目一覧"
 msgstr ""
 
@@ -581,121 +577,249 @@ msgstr ""
 msgid "学校名 / 法人名"
 msgstr ""
 
-#: core/templates/contact.html:31
+#: core/templates/contact.html:32
 msgid "学生の方は学部・学科まで入力してください。"
 msgstr ""
 
-#: core/templates/contact.html:37
+#: core/templates/contact.html:38
 msgid "氏名"
 msgstr ""
 
-#: core/templates/contact.html:37 core/templates/contact.html:65
-#: core/templates/contact.html:88 core/templates/contact.html:130
+#: core/templates/contact.html:38 core/templates/contact.html:86
+#: core/templates/contact.html:115 core/templates/contact.html:163
 msgid "必須"
 msgstr ""
 
-#: core/templates/contact.html:42
+#: core/templates/contact.html:50
 msgid "全角"
 msgstr ""
 
-#: core/templates/contact.html:46
+#: core/templates/contact.html:61
 msgid "全角カタカナ"
 msgstr ""
 
-#: core/templates/contact.html:52
+#: core/templates/contact.html:67
 msgid "年齢・性別"
 msgstr ""
 
-#: core/templates/contact.html:56
+#: core/templates/contact.html:72
 msgid "歳"
 msgstr ""
 
-#: core/templates/contact.html:59
+#: core/templates/contact.html:78
 msgid "採用に関するお問い合わせの場合、入力必須となります。"
 msgstr ""
 
-#: core/templates/contact.html:71
+#: core/templates/contact.html:98
 msgid "注：弊社では、フリーメールアドレスからのメッセージは受信できません。"
 msgstr ""
 
-#: core/templates/contact.html:73
+#: core/templates/contact.html:100
 msgid ""
 "Eメールアドレスのご記入をお願い致します。あらかじめご理解・ご了承をお願い致し"
 "ます。"
 msgstr ""
 
-#: core/templates/contact.html:79
+#: core/templates/contact.html:106
 msgid "ご連絡方法"
 msgstr ""
 
-#: core/templates/contact.html:82
+#: core/templates/contact.html:109
 msgid ""
 "お問い合わせ内容によって、メールをご希望の場合も電話連絡とさせていただく場合"
 "があります。"
 msgstr ""
 
-#: core/templates/contact.html:88
+#: core/templates/contact.html:115
 msgid "電話番号"
 msgstr ""
 
-#: core/templates/contact.html:93
+#: core/templates/contact.html:123
 msgid "半角（例: 03-1111-1111）"
 msgstr ""
 
-#: core/templates/contact.html:100
+#: core/templates/contact.html:130
 msgid "都道府県"
 msgstr ""
 
-#: core/templates/contact.html:105
+#: core/templates/contact.html:138
 msgid "ご希望連絡時間帯"
 msgstr ""
 
-#: core/templates/contact.html:107
+#: core/templates/contact.html:140
 msgid "電話連絡の場合のご連絡を希望する時間帯。"
 msgstr ""
 
-#: core/templates/contact.html:114
+#: core/templates/contact.html:147
 msgid "お問い合わせ内容"
 msgstr ""
 
-#: core/templates/contact.html:122
+#: core/templates/contact.html:155
 msgid "製品に関するお問い合わせは本ページ最上部、"
 msgstr ""
 
-#: core/templates/contact.html:124
-msgid "(株)Job Cretorより(株)Job Creatorへ直接お問い合わせください。"
+#: core/templates/contact.html:157
+msgid "(株)Job Creatorより(株)Job Creatorへ直接お問い合わせください。"
 msgstr ""
 
-#: core/templates/contact.html:130
+#: core/templates/contact.html:163
 msgid "詳細"
 msgstr ""
 
-#: core/templates/contact.html:134
+#: core/templates/contact.html:168
 msgid "お問い合わせ内容を詳しくご記入ください。"
 msgstr ""
 
-#: core/templates/contact.html:147
+#: core/templates/contact.html:181
 msgid "同意する"
 msgstr ""
 
-#: core/templates/contact.html:152
+#: core/templates/contact.html:188
 msgid "確認画面へ"
 msgstr ""
 
-#: core/templates/contact_confirm.html:6
+#: core/templates/contact_confirm.html:4 core/templates/contact_confirm.html:15
 msgid "入力内容の確認"
 msgstr ""
 
-#: core/templates/contact_confirm.html:9
+#: core/templates/contact_confirm.html:16
 msgid "以下の内容でよろしければ「送信する」ボタンを押してください。"
 msgstr ""
 
-#: core/templates/contact_confirm.html:29
+#: core/templates/contact_confirm.html:20
+msgid "お問い合わせ内容の確認"
+msgstr ""
+
+#: core/templates/contact_confirm.html:42
 msgid "修正する"
 msgstr ""
 
-#: core/templates/contact_confirm.html:35
+#: core/templates/contact_confirm.html:48
 msgid "送信する"
+msgstr ""
+
+#: core/templates/contact_success.html:4
+msgid "送信完了"
+msgstr ""
+
+#: core/templates/contact_success.html:14
+msgid "お問い合わせを承りました"
+msgstr ""
+
+#: core/templates/contact_success.html:16
+msgid "お問い合わせいただき、誠にありがとうございます。"
+msgstr ""
+
+#: core/templates/contact_success.html:18
+msgid "内容を確認の上、担当者より折り返しご連絡させていただきます。"
+msgstr ""
+
+#: core/templates/contact_success.html:20
+msgid "今しばらくお待ちくださいませ。"
+msgstr ""
+
+#: core/templates/contact_success.html:25
+msgid "トップページへ戻る"
+msgstr ""
+
+#: core/templates/home.html:10
+msgid "私たちの想い"
+msgstr ""
+
+#: core/templates/home.html:13
+msgid "未来を創造する、"
+msgstr ""
+
+#: core/templates/home.html:15
+msgid "確かな技術と信頼"
+msgstr ""
+
+#: core/templates/home.html:18
+msgid ""
+"私たちは、技術の力で社会に新しい価値を提供し続けることを目指しています。お客"
+"様の課題に深く向き合い、最適なソリューションを追求します。"
+msgstr ""
+
+#: core/templates/home.html:23
+msgid "会社情報について詳しく"
+msgstr ""
+
+#: core/templates/home.html:45
+msgid "事業内容"
+msgstr ""
+
+#: core/templates/home.html:46
+msgid "多岐にわたるソリューションで、お客様のビジネスの成長を支援いたします。"
+msgstr ""
+
+#: core/templates/home.html:54
+msgid "システム開発"
+msgstr ""
+
+#: core/templates/home.html:55
+msgid ""
+"最先端の技術スタックを駆使し、高品質でスケール可能なカスタムシステムを構築し"
+"ます。"
+msgstr ""
+
+#: core/templates/home.html:62
+msgid "ITコンサルティング"
+msgstr ""
+
+#: core/templates/home.html:63
+msgid ""
+"お客様のビジョンを理解し、ビジネスの成長を加速させるための戦略的なIT企画を提"
+"案します。"
+msgstr ""
+
+#: core/templates/home.html:70
+msgid "保守・運用サポート"
+msgstr ""
+
+#: core/templates/home.html:71
+msgid ""
+"システムの安定稼働を24時間体制でサポート。セキュリティアップデートや改善も継"
+"続的に行います。"
+msgstr ""
+
+#: core/templates/home.html:81
+msgid "最新ニュース"
+msgstr ""
+
+#: core/templates/home.html:82
+msgid "最新の情報をお届けします。"
+msgstr ""
+
+#: core/templates/home.html:86
+msgid "ニュース一覧を見る"
+msgstr ""
+
+#: core/templates/home.html:104
+msgid "詳しく読む"
+msgstr ""
+
+#: core/templates/home.html:111
+msgid "現在、公開されているニュースはありません。"
+msgstr ""
+
+#: core/templates/home.html:125
+msgid "ビジネスの新たな可能性を、"
+msgstr ""
+
+#: core/templates/home.html:127
+msgid "共に見つけ出しませんか？"
+msgstr ""
+
+#: core/templates/home.html:130
+msgid "どんな些細なことでもお気軽にご相談ください。"
+msgstr ""
+
+#: core/templates/home.html:132
+msgid "専門のスタッフが丁寧に対応させていただきます。"
+msgstr ""
+
+#: core/templates/home.html:137
+msgid "お問い合わせはこちら"
 msgstr ""
 
 #: core/templates/news_detail.html:31

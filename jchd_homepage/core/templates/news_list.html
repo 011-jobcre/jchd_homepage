@@ -24,12 +24,12 @@
                                 </div>
                                 <div class="flex-grow">
                                     <h2 class="text-base md:text-xl text-gray-800 font-medium group-hover:text-primary transition-colors flex items-center flex-wrap">
-                                        {{ news.title }}
                                         {% if news.is_recent %}
-                                            <span class="ml-2 inline-flex items-center justify-center bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm tracking-tighter leading-none transform -translate-y-[1px]">
+                                            <span class="mr-2 inline-flex items-center justify-center bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm tracking-tighter leading-none transform -translate-y-[1px]">
                                                 NEW
                                             </span>
                                         {% endif %}
+                                        {{ news.title }}
                                     </h2>
                                 </div>
                                 <div class="flex-shrink-0 text-right">

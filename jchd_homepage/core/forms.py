@@ -33,12 +33,7 @@ class ContactForm(forms.ModelForm):
             "first_name": forms.TextInput(attrs={"placeholder": _("名")}),
             "last_name_kana": forms.TextInput(attrs={"placeholder": _("セイ")}),
             "first_name_kana": forms.TextInput(attrs={"placeholder": _("メイ")}),
-            "email": forms.EmailInput(
-                attrs={"placeholder": _("例: example@domain.com")}
-            ),
-            "phone_number": forms.TextInput(
-                attrs={"placeholder": _("例: 03-1111-1111")}
-            ),
+            "email": forms.EmailInput(attrs={"placeholder": "example@domain.com"}),
             "detail": forms.Textarea(
                 attrs={
                     "rows": 5,
@@ -118,7 +113,7 @@ class ContactForm(forms.ModelForm):
     # Custom validation
     def clean_phone_number(self):
         phone = self.cleaned_data.get("phone_number")
-        # Regex cho số điện thoại Nhật (di động hoặc bàn)
+        # Regex for Japanese phone number (mobile or landline)
         if not re.match(r"^(0\d{1,4}-\d{1,4}-\d{4}|0\d{9,10})$", phone):
             raise forms.ValidationError(_("有効な電話番号を入力してください。"))
         return phone
@@ -134,3 +129,9 @@ class ContactForm(forms.ModelForm):
         if not re.match(r"^[ァ-ヶー]+$", data):
             raise forms.ValidationError(_("全角カタカナで入力してください。"))
         return data
+
+    def clean_age(self):
+        age = self.cleaned_data.get("age")
+        if age is not None and (age < 16 or age > 120):
+            raise forms.ValidationError(_("有効な年齢を入力してください。"))
+        return age

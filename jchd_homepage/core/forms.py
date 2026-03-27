@@ -7,17 +7,6 @@ from .models import Contact
 
 
 class ContactForm(forms.ModelForm):
-    # email_confirm = forms.EmailField(
-    #     label=_("メールアドレス(確認)"),
-    #     required=True,
-    #     widget=forms.EmailInput(
-    #         attrs={
-    #             "placeholder": _("確認のため、もう一度入力してください"),
-    #             "class": "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition",
-    #         }
-    #     ),
-    # )
-
     class Meta:
         model = Contact
         fields = "__all__"
@@ -27,6 +16,9 @@ class ContactForm(forms.ModelForm):
             "last_name_kana": forms.TextInput(attrs={"placeholder": _("セイ")}),
             "first_name_kana": forms.TextInput(attrs={"placeholder": _("メイ")}),
             "email": forms.EmailInput(attrs={"placeholder": "example@domain.com"}),
+            "email_confirm": forms.EmailInput(
+                attrs={"placeholder": _("確認のため、もう一度入力してください")}
+            ),
             "detail": forms.Textarea(
                 attrs={
                     "rows": 5,

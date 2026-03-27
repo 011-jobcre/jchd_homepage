@@ -74,45 +74,47 @@
         </div>
     </section>
     <!-- 3. NEWS SECTION -->
-    <section class="py-24 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end items-center justify-between mb-16 gap-6">
-                <div class="space-y-4">
-                    <h2 class="text-4xl font-bold text-gray-900">{% trans "最新ニュース" %}</h2>
-                    <p class="text-lg text-gray-500">{% trans "最新の情報をお届けします。" %}</p>
+    {% if LANGUAGE_CODE == 'ja' %}
+        <section class="py-24 bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end items-center justify-between mb-16 gap-6">
+                    <div class="space-y-4">
+                        <h2 class="text-4xl font-bold text-gray-900">{% trans "最新ニュース" %}</h2>
+                        <p class="text-lg text-gray-500">{% trans "最新の情報をお届けします。" %}</p>
+                    </div>
+                    <a href="{% url 'news' %}"
+                       class="bg-primary hover:bg-primarydark text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-xl">
+                        {% trans "ニュース一覧を見る" %}
+                    </a>
                 </div>
-                <a href="{% url 'news' %}"
-                   class="bg-primary hover:bg-primarydark text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-xl">
-                    {% trans "ニュース一覧を見る" %}
-                </a>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {% for item in news %}
-                    <article class="group relative bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500">
-                        <div class="p-8 space-y-4">
-                            <div class="flex items-center gap-4 text-sm font-bold text-gray-400">
-                                <time datetime="{{ item.date|date:'Y-m-d' }}">{{ item.date|date:"Y.m.d" }}</time>
-                                {% if item.is_recent %}<span class="px-2 py-0.5 bg-red-50 text-red-600 rounded text-xs">NEW</span>{% endif %}
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {% for item in news %}
+                        <article class="group relative bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500">
+                            <div class="p-8 space-y-4">
+                                <div class="flex items-center gap-4 text-sm font-bold text-gray-400">
+                                    <time datetime="{{ item.date|date:'Y-m-d' }}">{{ item.date|date:"Y.m.d" }}</time>
+                                    {% if item.is_recent %}<span class="px-2 py-0.5 bg-red-50 text-red-600 rounded text-xs">NEW</span>{% endif %}
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 line-clamp-2 group-hover:text-primary transition-colors">
+                                    <a href="{% url 'news_detail' slug=item.slug %}">{{ item.title }}</a>
+                                </h3>
+                                <div class="text-gray-500 line-clamp-3 text-sm leading-relaxed">{{ item.content|striptags|truncatechars:100 }}</div>
+                                <div class="pt-4 border-t border-gray-50">
+                                    <a href="{% url 'news_detail' slug=item.slug %}"
+                                       class="inline-flex items-center text-sm font-bold text-primary group-hover:underline">
+                                        {% trans "詳しく読む" %}
+                                        <i class="fa-solid fa-chevron-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 line-clamp-2 group-hover:text-primary transition-colors">
-                                <a href="{% url 'news_detail' slug=item.slug %}">{{ item.title }}</a>
-                            </h3>
-                            <div class="text-gray-500 line-clamp-3 text-sm leading-relaxed">{{ item.content|striptags|truncatechars:100 }}</div>
-                            <div class="pt-4 border-t border-gray-50">
-                                <a href="{% url 'news_detail' slug=item.slug %}"
-                                   class="inline-flex items-center text-sm font-bold text-primary group-hover:underline">
-                                    {% trans "詳しく読む" %}
-                                    <i class="fa-solid fa-chevron-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                {% empty %}
-                    <div class="col-span-full py-20 text-center text-gray-500 italic">{% trans "現在、公開されているニュースはありません。" %}</div>
-                {% endfor %}
+                        </article>
+                    {% empty %}
+                        <div class="col-span-full py-20 text-center text-gray-500 italic">{% trans "現在、公開されているニュースはありません。" %}</div>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
     <!-- 4. CTA SECTION -->
     <section class="py-24">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">

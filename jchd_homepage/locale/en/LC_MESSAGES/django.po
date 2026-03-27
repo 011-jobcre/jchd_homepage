@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-27 16:00+0900\n"
+"POT-Creation-Date: 2026-03-27 16:52+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,27 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/forms.py:25 core/models.py:405
+#: core/forms.py:14 core/models.py:405
 msgid "姓"
 msgstr "Last Name"
 
-#: core/forms.py:26 core/models.py:406
+#: core/forms.py:15 core/models.py:406
 msgid "名"
 msgstr "First Name"
 
-#: core/forms.py:27 core/models.py:407
+#: core/forms.py:16 core/models.py:407
 msgid "セイ"
 msgstr "Last Name (Kana)"
 
-#: core/forms.py:28 core/models.py:408
+#: core/forms.py:17 core/models.py:408
 msgid "メイ"
 msgstr "First Name (Kana)"
 
-#: core/forms.py:75
+#: core/forms.py:20
+msgid "確認のため、もう一度入力してください"
+msgstr "Please enter again for confirmation"
+
+#: core/forms.py:67
 msgid "メールアドレスが一致しません。もう一度入力してください。"
 msgstr "The email address does not match. Please enter it again."
 
-#: core/forms.py:92
+#: core/forms.py:84
 msgid ""
 "フリーメールアドレスはご利用いただけません。会社・学校のメールアドレスをご利"
 "用ください。"
@@ -46,19 +50,19 @@ msgstr ""
 "Free email addresses are not accepted. Please use a company or school email "
 "address."
 
-#: core/forms.py:101
+#: core/forms.py:93
 msgid "採用に関するお問い合わせの場合、年齢の入力は必須です。"
 msgstr "For inquiries regarding employment, entering your age is required."
 
-#: core/forms.py:111
+#: core/forms.py:103
 msgid "有効な電話番号を入力してください。"
 msgstr "Please enter a valid phone number."
 
-#: core/forms.py:117 core/forms.py:123
+#: core/forms.py:109 core/forms.py:115
 msgid "全角カタカナで入力してください。"
 msgstr "Please enter using full-width katakana characters."
 
-#: core/forms.py:129
+#: core/forms.py:121
 msgid "有効な年齢を入力してください。"
 msgstr "Please enter a valid age."
 
@@ -74,11 +78,11 @@ msgstr "Slug"
 msgid "ページタイプ"
 msgstr "Page Type"
 
-#: core/models.py:45 core/models.py:215 core/models.py:277 core/models.py:607
+#: core/models.py:45 core/models.py:215 core/models.py:277 core/models.py:608
 msgid "並び順"
 msgstr "Sort Order"
 
-#: core/models.py:51 core/models.py:599
+#: core/models.py:51 core/models.py:600
 msgid "イメージ"
 msgstr "Image"
 
@@ -198,12 +202,12 @@ msgstr "List of Greetings"
 msgid "拠点名"
 msgstr "Location Name"
 
-#: core/models.py:188 core/models.py:491 core/templates/base.html:206
+#: core/models.py:188 core/models.py:492 core/templates/base.html:206
 #: core/templates/page_detail.html:108
 msgid "住所"
 msgstr "Address"
 
-#: core/models.py:193 core/models.py:510
+#: core/models.py:193 core/models.py:511
 msgid "郵便番号"
 msgstr "Post Code"
 
@@ -227,7 +231,7 @@ msgstr "List of Basic Content"
 msgid "日付"
 msgstr "Date"
 
-#: core/models.py:285 core/models.py:460 core/templates/contact.html:151
+#: core/models.py:285 core/models.py:461 core/templates/contact.html:151
 msgid "内容"
 msgstr "Content"
 
@@ -447,135 +451,139 @@ msgstr "Female"
 msgid "性別"
 msgstr "Gender"
 
-#: core/models.py:418 core/models.py:518 core/templates/contact.html:86
+#: core/models.py:418 core/models.py:519 core/templates/contact.html:86
 msgid "メールアドレス"
 msgstr "Email address"
 
-#: core/models.py:421
+#: core/models.py:419
+msgid "メールアドレス(確認)"
+msgstr "Email address (confirm)"
+
+#: core/models.py:422
 msgid "メール"
 msgstr "Email"
 
-#: core/models.py:421
+#: core/models.py:422
 msgid "電話"
 msgstr "Phone"
 
-#: core/models.py:423 core/templates/contact.html:106
+#: core/models.py:424 core/templates/contact.html:106
 msgid "ご連絡方法"
 msgstr "How to Contact Us"
 
-#: core/models.py:426 core/templates/contact.html:115
+#: core/models.py:427 core/templates/contact.html:115
 msgid "電話番号"
 msgstr "Phone number"
 
-#: core/models.py:429
+#: core/models.py:430
 msgid "自宅"
 msgstr "Home"
 
-#: core/models.py:429
+#: core/models.py:430
 msgid "勤務先"
 msgstr "Workplace"
 
-#: core/models.py:429
+#: core/models.py:430
 msgid "携帯"
 msgstr "Cell phone"
 
-#: core/models.py:431
+#: core/models.py:432
 msgid "電話種別"
 msgstr "Phone type"
 
-#: core/models.py:437 core/templates/contact.html:130
+#: core/models.py:438 core/templates/contact.html:130
 msgid "都道府県"
 msgstr "Prefecture"
 
-#: core/models.py:443
+#: core/models.py:444
 msgid "特に希望なし"
 msgstr "No particular preference"
 
-#: core/models.py:444
+#: core/models.py:445
 msgid "午前"
 msgstr "Morning"
 
-#: core/models.py:445
+#: core/models.py:446
 msgid "午後"
 msgstr "Afternoon"
 
-#: core/models.py:446
+#: core/models.py:447
 msgid "夕方以降"
 msgstr "Evening or later"
 
-#: core/models.py:449
+#: core/models.py:450
 msgid "時間帯"
 msgstr "Time zone"
 
-#: core/models.py:455
+#: core/models.py:456
 msgid "サービスに関するお問い合わせ"
 msgstr "Inquiry about services"
 
-#: core/models.py:456
+#: core/models.py:457
 msgid "採用に関するお問い合わせ"
 msgstr "Inquiry about recruitment"
 
-#: core/models.py:457
+#: core/models.py:458
 msgid "その他"
 msgstr "Other inquiry"
 
-#: core/models.py:462 core/templates/contact.html:163
+#: core/models.py:463 core/templates/contact.html:163
 msgid "詳細"
 msgstr "Detail"
 
-#: core/models.py:464
+#: core/models.py:465
 msgid "送信日時"
 msgstr "Date/Time of Submission"
 
-#: core/models.py:466
+#: core/models.py:467
 msgid "対応済み"
 msgstr "Done"
 
-#: core/models.py:468
+#: core/models.py:469
 msgid "対応済みかどうかを指定します。"
 msgstr "Specify whether the issue has been resolved."
 
-#: core/models.py:486
+#: core/models.py:487
 msgid "会社名"
 msgstr "Company Name"
 
-#: core/models.py:494
+#: core/models.py:495
 msgid "バナーのスローガン"
 msgstr "Slogan of Banner"
 
-#: core/models.py:501
+#: core/models.py:502
 msgid "バナーの説明文"
 msgstr "Description of Banner"
 
-#: core/models.py:523
+#: core/models.py:524
 msgid "ロゴイメージ"
 msgstr "Logo Image"
 
-#: core/models.py:530
+#: core/models.py:531
 msgid "Google Maps埋め込みコード"
 msgstr "Google Maps Embed Code"
 
-#: core/models.py:536
+#: core/models.py:537
 msgid "お問い合わせ通知用メールアドレス"
 msgstr "Email address for contact notifications"
 
-#: core/models.py:564 core/models.py:582
+#: core/models.py:565 core/models.py:583
 msgid "サイト構成"
 msgstr "Site Structure"
 
-#: core/models.py:565
+#: core/models.py:566
 msgid "サイト構成一覧"
 msgstr "List of Site Structure"
 
-#: core/models.py:575 core/models.py:613
+#: core/models.py:576 core/models.py:614
 msgid "メニュー項目"
 msgstr "Menu Items"
 
-#: core/models.py:594
+#: core/models.py:595
 msgid "表示する"
 msgstr "Display"
 
-#: core/models.py:614
+#: core/models.py:615
 msgid "メニュー項目一覧"
 msgstr "List of Menu Items"
 
@@ -766,7 +774,10 @@ msgstr "Reliable Technology and Trust"
 msgid ""
 "私たちは、技術の力で社会に新しい価値を提供し続けることを目指しています。お客"
 "様の課題に深く向き合い、最適なソリューションを追求します。"
-msgstr "We aim to continuously provide new value to society through the power of technology. We deeply address our customers' challenges and pursue the optimal solutions."
+msgstr ""
+"We aim to continuously provide new value to society through the power of "
+"technology. We deeply address our customers' challenges and pursue the "
+"optimal solutions."
 
 #: core/templates/home.html:23
 msgid "会社情報について詳しく"
@@ -788,7 +799,9 @@ msgstr "System Development"
 msgid ""
 "最先端の技術スタックを駆使し、高品質でスケール可能なカスタムシステムを構築し"
 "ます。"
-msgstr "We leverage cutting-edge technology stacks to build high-quality, scalable custom systems."
+msgstr ""
+"We leverage cutting-edge technology stacks to build high-quality, scalable "
+"custom systems."
 
 #: core/templates/home.html:62
 msgid "ITコンサルティング"
@@ -798,7 +811,9 @@ msgstr "IT Consulting"
 msgid ""
 "お客様のビジョンを理解し、ビジネスの成長を加速させるための戦略的なIT企画を提"
 "案します。"
-msgstr "We understand your vision and propose strategic IT plans to accelerate your business growth."
+msgstr ""
+"We understand your vision and propose strategic IT plans to accelerate your "
+"business growth."
 
 #: core/templates/home.html:70
 msgid "保守・運用サポート"
@@ -808,45 +823,47 @@ msgstr "Maintenance and Operation Support"
 msgid ""
 "システムの安定稼働を24時間体制でサポート。セキュリティアップデートや改善も継"
 "続的に行います。"
-msgstr "We provide 24/7 support for the stable operation of your systems, including continuous security updates and improvements."
+msgstr ""
+"We provide 24/7 support for the stable operation of your systems, including "
+"continuous security updates and improvements."
 
-#: core/templates/home.html:81
+#: core/templates/home.html:82
 msgid "最新ニュース"
 msgstr "Latest News"
 
-#: core/templates/home.html:82
+#: core/templates/home.html:83
 msgid "最新の情報をお届けします。"
 msgstr "We deliver the latest information."
 
-#: core/templates/home.html:86
+#: core/templates/home.html:87
 msgid "ニュース一覧を見る"
 msgstr "View All News"
 
-#: core/templates/home.html:104
+#: core/templates/home.html:105
 msgid "詳しく読む"
 msgstr "Read More"
 
-#: core/templates/home.html:111
+#: core/templates/home.html:112
 msgid "現在、公開されているニュースはありません。"
 msgstr "No news is currently available."
 
-#: core/templates/home.html:125
+#: core/templates/home.html:127
 msgid "ビジネスの新たな可能性を、"
 msgstr "Let's Discover New Business Possibilities Together"
 
-#: core/templates/home.html:127
+#: core/templates/home.html:129
 msgid "共に見つけ出しませんか？"
 msgstr "Let's find it together"
 
-#: core/templates/home.html:130
+#: core/templates/home.html:132
 msgid "どんな些細なことでもお気軽にご相談ください。"
 msgstr "Please feel free to contact us with any questions."
 
-#: core/templates/home.html:132
+#: core/templates/home.html:134
 msgid "専門のスタッフが丁寧に対応させていただきます。"
 msgstr "Our professional staff will be happy to assist you."
 
-#: core/templates/home.html:137
+#: core/templates/home.html:139
 msgid "お問い合わせはこちら"
 msgstr "Contact Us Here"
 
@@ -885,12 +902,3 @@ msgstr "President"
 #: core/templates/page_detail.html:143
 msgid "現在、拠点情報が登録されていません。"
 msgstr "Location information is currently not registered."
-
-#~ msgid "送信するにはプライバシーポリシーへの同意が必要です。"
-#~ msgstr "You must agree to the privacy policy to submit."
-
-#~ msgid "メールアドレス(確認)"
-#~ msgstr "Email Address (Confirm)"
-
-#~ msgid "確認のため、もう一度入力してください"
-#~ msgstr "Please enter this again to confirm"

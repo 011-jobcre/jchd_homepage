@@ -416,6 +416,7 @@ class Contact(models.Model):
     )
 
     email = models.EmailField(verbose_name=_("メールアドレス"))
+    email_confirm = models.EmailField(verbose_name=_("メールアドレス(確認)"))
     contact_method = models.CharField(
         max_length=10,
         choices=[("email", _("メール")), ("phone", _("電話"))],
